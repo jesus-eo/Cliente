@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cambio climático</title>
+    <style>
+        *{margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;}
+            
+        header,nav,main,aside,section,footer{
+            border: 1px solid black;
+        }
+        .navegador{
+            display: flex;
+            
+        }
+        .enlace{
+            padding: 15px;
+        }
+        aside{
+            display: flex;
+        } 
+    
+       main{width: 75vh;}
+       aside{
+            float: right;
+            width: 25vh;
+        }
+        
+        .cabecera{
+            text-align: center;
+        }
+        #tabla,tr,td{
+            border: 1px dotted red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="cabecera">Cambio Climático</h1>
+    </header>
+    <nav class="navegador">
+        <div class="enlace"><a href="home.html">Home</a></div>
+        <div class="enlace"><a href="#">Inscribete</a></div>
+    </nav>
+    <main>
+        <section>
+            <table id="tabla">
+                <tr>
+                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dignissimos animi error corporis vero quae deserunt sed consequatur eaque sint.</td>
+                    <td><img src="imagendos.jpeg" alt="montaña rodeada de basura"></td>
+                </tr>
+                <tr>
+                    <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis fugit, aliquam animi cumque, porro natus culpa adipisci repellat obcaecati accusamus, dolorum inventore minima enim deleniti eveniet debitis minus doloremque delectus.</td>
+                    <td><img src="descarga.jpeg" alt="foto medio ambiente"></td>
+
+                </tr>
+                
+            </table>
+        </section>
+    </main>
+    <aside>
+        <form action="">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" name="apellidos" id="apellidos">
+            <input type="submit" value="Enviar">
+            
+        </form>
+    </aside>
+    <footer><p id="textoFooter">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem magnam consequuntur libero fugit necessitatibus cumque, earum dolores iusto labore voluptas nulla quis neque cum quam sunt vitae aperiam, itaque quisquam.</p></footer>
+</body>
+</html>
