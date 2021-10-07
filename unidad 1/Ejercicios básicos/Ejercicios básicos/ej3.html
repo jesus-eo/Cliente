@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej3</title>
+</head>
+<body>
+    <h3>Diseña una web con tres botones para que al pulsarlos se genere un mensaje de
+        bienvenida en francés, inglés y castellano, en la misma página. El mensaje irá en un
+        párrafo. Los mensajes tendrán un color diferente según el idioma 
+    </h3> 
+    <h4>Selecciona tu idioma</h4>
+    <p id="parrafo"></p>
+    <button onclick="pfrances()">Francés</button>
+    <button onclick="pIngles()">Inglés</button>
+    <button onclick="pCastellano()">Castellano</button>
+    <script>
+        let parrafo = document.getElementById("parrafo");
+        function pfrances() {
+            parrafo.innerHTML="Bonjour";
+            parrafo.style.color="green";
+            
+        }
+    
+        function pIngles() {
+            parrafo.innerHTML = "Hello";
+            parrafo.style.color="red";
+        }
+        function pCastellano() {
+            parrafo.innerHTML = "Bienvenido";
+            parrafo.style.color= "blue";
+        }
+    </script>
+
+</body>
+</html>
