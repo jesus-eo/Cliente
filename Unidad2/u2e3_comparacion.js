@@ -1,4 +1,4 @@
-let a = (10 == 10);
+
 let b = (10 === 10);
 let c = (10 === 10.0);
 let d = "Laura" == "laura";
@@ -8,8 +8,8 @@ let g = "123" == 123;
 let h = "123" === 123;
 let i = parseInt("123") === 123;
 
-
-alert("La operacion 10 == 10 es: " + a);
+//Utilizando comas invertidas
+alert(`La operacion 10 == 10 es: ${10 == 10}`);
 alert("La operacion 10 === 10 es: " + b);
 alert("La operacion 10 === 10.0 es: " + c);
 alert('El resultado de "Laura" == "laura" es: ' + d);
