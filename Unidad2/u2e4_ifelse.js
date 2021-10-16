@@ -9,23 +9,16 @@ Para guardar un valor del usuario utilizamos el siguiente código:
 var respuesta = prompt (“Mensaje”);
 También comprobará que no se meta un número menor de 0. Comenta el código con los comentarios que estimes necesarios */
 let val = parseInt(prompt("Introduzca su edad:"));
-switch (true) {
-    case val < 0:
-        alert("No puedes introducir un valor menor que 0");
-        break;
-    case val > 0 && val <= 12:
-        alert("Eres un niño");
-        break;
-    case val >= 13 && val <= 26:
-        alert("Eres joven");
-        break;            
-    case val >= 26 && val <= 60:
-        alert("Eres adulto");
-        break;
-    case val > 60:
-        alert("Eres un jubilado");
-        break;
-    
+if (val < 0) {
+    alert("No puedes introducir un valor menor que 0");
+}else if(val > 0 && val <= 12){
+    alert("Eres un niño");
+}else if(val >= 13 && val <= 26){
+    alert("Eres joven");
+}else if(val >= 26 && val <= 60){
+    alert("Eres adulto");
+}else if(val > 60){
+    alert("Eres un jubilado");
 }
 
 document.write(`Tu edad es: ${val}`);

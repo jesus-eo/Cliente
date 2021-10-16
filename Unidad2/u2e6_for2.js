@@ -4,7 +4,12 @@ En lugar de mostrar un alert, utiliza la instrucción document.write(“Mensaje�
 
 Comenta el código con los comentarios que estimes necesarios.  */
 
-for (let i = 9; i < 21; i++) {
-    const element = array[i];
+for (let i = 9; i < 22; i++) {
+    if(i<21){
+        for (let p = 05; p < 65; p+=5) {
+            document.write(`${i}:${p} `);
+            
+        }
+    }else{document.write(i + ":00")}
     
 }
