@@ -1,7 +1,7 @@
 let cont = 1;
 let res = "";
 console.log("fuera");
-while (cont != 20) {
+while (cont != 21) {
     if ((cont % 3) == 0 && (cont % 5) == 0) {
         res += "El número " + cont + " es divisible por 3 y 5." + "<br>";
     }else if((cont % 3) == 0){
