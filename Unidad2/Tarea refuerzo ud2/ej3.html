@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            padding: 15px;
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            border: 1px dotted orange;
+            background-color: darkslateblue;
+            color: orange;
+        }
+        #sup, #resultado{
+            text-align: center;
+        }
+        div , label{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="sup">El misterio del asesino!!</h1>
+    <form action="">
+        <div>
+            <label for="habitacion">Salas:</label>
+            <select name="habitacion" id="habitacion">
+                <option value="salon">Salón de baile</option>
+                <option value="galeria">Galeria</option>
+                <option value="billar">Sala de billar</option>
+                <option value="comedor">Comedor</option>
+            </select>
+        </div>
+        <div>
+            <label for="sospechoso">Sospechosos:</label>
+            <select name="sospechosos" id="sospechosos">
+                <option value="SR.Parkes">SR.Parkes</option>
+                <option value="SRA.VanCleve">Sra.VanClece</option>
+                <option value="Sra.Sparr">Sra.Sparr</option>
+                <option value="Sr.Kalehoff">Sr.Kalehoff</option>
+            </select>
+        </div>
+        <button type="submit" id="resolver">Resolver</button>
+    </form>
+    <p id="resultado"></p> 
+    <script src="ej3.js"></script>
+</body>
+</html>
