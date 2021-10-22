@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio3A02</title>
+</head>
+<body>
+    <p id="salida"></p>
+    <script>
+        let entrada = prompt("Inserta una frase");
+        let separa = entrada.split(" ");
+        document.getElementById("salida").innerHTML = (`La frase de entrada es: ${entrada}. <br> Las palabras de entrada separadas son: ${separa}. <br> La primera palabra es: ${separa[0]}. <br> La última palabra de la frase es : ${separa[(separa.length) - 1]}`);
+    </script>
+</body>
+</html>
