@@ -8,14 +8,20 @@
 </head>
 <body>
   <script>
-    let fechaNac = new Date(1992,12,29);
-    
-    let fechaActual = new Date();
+    let fechaNac = new Date("1992,12,29");
+    let fechaActual = new Date();//Fecha actual formato(año,mes,dia); 
+
     let mesActual = fechaActual.getMonth();
     let diaActual = fechaActual.getDate();
     let anoActual = fechaActual.getFullYear();
     let x = new Date(anoActual,diaActual,diaActual);
     console.log(fechaNac - x);
+
+    /* alert("Mi edad es de: " + dia + " días, " + mes + " meses y " + anyo + " años "); */
   </script>
+
+      
+     
+  
 </body>
 </html>
