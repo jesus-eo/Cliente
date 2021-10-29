@@ -14,7 +14,7 @@
 
         <p id="parrafo"></p>
 
-        <iframe id="fr1" src="objetoWindow2.html" width="40%" height="150"></iframe>
+        <iframe id="fr1" src="https://html.spec.whatwg.org/multipage/window-object.html" width="40%" height="150"></iframe>
         <iframe src="https://wikipedia.com" width="40%" height="150"></iframe>
 
         <p id="ifr"></p>
@@ -84,70 +84,51 @@
 
             let ventanaNueva;
             //Abre una pestaña nueva(_black) en blanco
-            
-            //Cuando llama a la función crarVentana se ejecuta el windows.open() y se guarda en la variable ventanaNueva que es un objeto para después hacer cambios en ella, ** En el momento que se le cambia el width y el height van *juntosss*abre una ventana nueva no una pestaña***
-
+         
             function crearVentana(){
-               ventanaNueva = window.open("about:blank","_black","width=300 height=100");
-                  /*  //Abre una pestaña y te lleva al padre es decir cuando tenemos una ventana dentro de un iframe(_parent)
-                   ventanaNueva = window.open("about:blank","_parent"); */
-
-
-                ventanaNueva.document.write("<h1>Esta ventana es de prueba</h1>");
-
-                let cad3 = "";
-                cad3 += "<br> El padre de la ventana nueva es: " + ventanaNueva.parent.name;
-                cad3 += "<br> El padre del iframe2: " + window.frames[1].parent.name;
-                cad3 += "<br> La ventana que ha abierto la nueva ventana es: " + ventanaNueva.opener.name;
-
-                document.getElementById("ventanas").innerHTML= cad3;
+              /*  ventanaNueva = window.open("about:blank","_black"); */
+                  /* /*  //Abre una pestaña y machaca la anterior con (_parent) */
+                   ventanaNueva = window.open("about:blank","_parent"); 
             }
-           
-            //Cierra la ventana creada
+
             function cerrarVentana(){
-              ventanaNueva.close();
+              
             }
 
-            //Cambia el tamaño de la ventana con resizeBY y con focus te trae adelante la ventana porque osino se va hacia detrás y no se ve
             function redimensionarVentana(){
-               ventanaNueva.resizeBy(10,10);
-               ventanaNueva.focus();
+               
             }
-            //Mueve laventana
+
             function moverVentana(){
-               ventanaNueva.focus();
-               ventanaNueva.moveBy(10,10);
+               
             }
 
         //MÉTODOS DE INSTRUCCIONES DE TIEMPO    
-            let time;
 
             function saludo(){
-               alert("hola");
+               
             }
 
-            //Para que se ejecute la función saludo cada 3 segundos que son 3000 milisegundos lo guardamos en una variable para después poder pararla
+                      
             function retardoVentana(){
-               time = window.setTimeout(saludo, 3000);
+               
             }
-            //Borra la variable time y ya no sale la ventana emergente
+
             function quitarRetardo(){
-               window.clearTimeout(time);
+               
             }
 
            
             function reloj(){
-               let clk = new Date();
-               document.getElementById("reloj").innerHTML = "Hora: " + clk.getHours() + ":" + clk.getMinutes() + ":" + clk.getSeconds();
+               
             }
 
-            let relogPeriodico;
             function intervaloReloj(){
-               relogPeriodico = setInterval(reloj, 1000);
+               
             }
 
             function quitarIntervalo(){
-               window.clearInterval(relogPeriodico);
+               
             }
 
         </script>
