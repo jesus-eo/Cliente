@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejer4</title>
+</head>
+<body>
+    <button type="submit" id="btn">INICIAR / PARAR</button>
+    <script>
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click",accion);
+       
+        function accion() {
+            let relog = setInterval(accion,1000);
+            let fechaActual = new Date();
+            let horaActual = fechaActual.getHours();
+            let minActual = fechaActual.getMinutes();
+            let segActual = fechaActual.getSeconds();
+            window.document.title= horaActual + ':' + minActual + ':' + segActual;
+        }
+        
+    </script>
+</body>
+</html>
