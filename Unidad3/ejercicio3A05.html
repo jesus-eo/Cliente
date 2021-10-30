@@ -11,13 +11,16 @@
     let fechaNac = new Date("1992,12,29");
     let fechaActual = new Date();//Fecha actual formato(año,mes,dia); 
 
-    let mesActual = fechaActual.getMonth();
-    let diaActual = fechaActual.getDate();
-    let anoActual = fechaActual.getFullYear();
-    let x = new Date(anoActual,diaActual,diaActual);
-    console.log(fechaNac - x);
+    let segundostotales = fechaActual-fechaNac;
 
-    /* alert("Mi edad es de: " + dia + " días, " + mes + " meses y " + anyo + " años "); */
+    let dias = segundostotales/8.64e+7;//Divido los segundostotales entre los segundos que tiene un dia y devuelve los dias que he vivido en milisegundo
+    let meses = segundostotales/2.628e+9;
+    let año = segundostotales/3.154e+10;
+    
+    let mesesVividos = (meses - (Math.floor(año))*12);
+    let diasVividos = dias - (Math.floor(mesesVividos)*30.4167+Math.floor(año)*365.25);
+
+    alert("Mi edad es de: " + Math.floor(dias) + " días, " + Math.floor(meses) + " meses y " + Math.floor(año) + " años "); 
   </script>
 
       
