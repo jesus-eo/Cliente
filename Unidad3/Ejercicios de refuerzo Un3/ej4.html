@@ -10,15 +10,31 @@
     <button type="submit" id="btn">INICIAR / PARAR</button>
     <script>
         let btn = document.getElementById("btn");
-        btn.addEventListener("click",accion);
+        let cont = false;
+        btn.addEventListener("click",function(){
+            if (cont) {
+                parar();
+            }else {
+                activar();
+            }
+        });
        
         function accion() {
-            let relog = setInterval(accion,1000);
             let fechaActual = new Date();
             let horaActual = fechaActual.getHours();
             let minActual = fechaActual.getMinutes();
             let segActual = fechaActual.getSeconds();
             window.document.title= horaActual + ':' + minActual + ':' + segActual;
+            
+        }
+        let relog;
+        function activar(){
+            relog = setInterval(accion,1000);
+            cont = true;
+        }
+        function parar() {
+            clearInterval(relog);
+            cont = false;
         }
         
     </script>
