@@ -12,11 +12,20 @@
 </p>
   <script>
     let salida = '<ol>';
+      //Recorro objeto navigator
     for (const key in navigator) {
-         salida +=  navigator[key];
-    document.getElementById('salida').innerHTML = salida;
-
+      salida +=  `<li> ${key}: ${navigator[key]} </li>`;
+      if (key == "plugins") {
+        //Recojo el objeto plugins , lo inserto en una variable y lo recorro
+        let objPlugin = navigator[key]; 
+        for (const clav in objPlugin) {
+          salida += `<ul> ${clav}: ${objPlugin[clav]} </ul>`;
+        }
+      }
+      
     }
+    salida += '</ol>';
+    document.getElementById("salida").innerHTML = salida;
     
   </script>
 </body>
