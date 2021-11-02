@@ -5,18 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        #salida {
-            background-color: blue;
-            width: 50px;
-            height: 50px;
-        }
-    </style>
 </head>
 <body>
-    <p id="salida"></p>
+    
     <script>
-        document.getElementById("salida")
+        //console.log(calculargb());
+        //Calculo los números para el rgb para obtener el color
+        function calculargb() {
+            let res = Math.round((Math.random()*255));
+            return res;
+        }
+        function calculapos(){
+            let left = Math.round((Math.random()*1300));
+            let top = Math.round((Math.random()*800));
+            return [left,top];
+        }
+        for (let i = 0; i < 2000; i++) {
+            document.write(`<div style="width: 50px; height: 50px; background-color: rgb(${calculargb()},${calculargb()},${calculargb()});position:absolute; top:${calculapos()[0]}px; left:${calculapos()[1]}px;"></div>`);
+            
+        }
         
     </script>
 </body>
