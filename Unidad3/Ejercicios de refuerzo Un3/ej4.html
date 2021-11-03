@@ -24,9 +24,18 @@
             let horaActual = fechaActual.getHours();
             let minActual = fechaActual.getMinutes();
             let segActual = fechaActual.getSeconds();
-            window.document.title= horaActual + ':' + minActual + ':' + segActual;
+            
+            if (segActual.toString().length == 1) {
+                window.document.title= horaActual + ':' + minActual + ':0' + segActual;
+            }else if(minActual.toString().length == 1) {
+                window.document.title= horaActual + ':0' + minActual + ':' + segActual;
+            }else {
+                window.document.title= horaActual + ':' + minActual + ':' + segActual;
+            }
+           
             
         }
+        //Creo variable relog que es la que contiene el intervalo por lo tanto es la que tengo que desactivar
         let relog;
         function activar(){
             relog = setInterval(accion,1000);
