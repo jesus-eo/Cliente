@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button type="submit" id="cambiarcolor">Cambiar color</button>
+
+  <script>
+    let btn = document.getElementById("cambiarcolor");
+    btn.addEventListener("click",compruebaLado);
+
+    function compruebaLado() {
+      /* console.log(window.parent.frames[0].name); */
+      let dir = window.parent.frames[0].document.getElementById("direccion").value;
+      let col = window.parent.frames[0].document.getElementById("colores").value;
+      //Accedo a la ventana padre pasandole 0 o 1 accediendo a los valores de la direccion y después al body asignandole el color que recojo de la variable del color
+      window.parent.frames[parseInt(dir)].document.body.style.backgroundColor = col;
+      
+    }
+    
+  </script>
+</body>
+</html>
