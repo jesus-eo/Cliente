@@ -12,17 +12,20 @@
 <script>
   let confirmacion = confirm("Para acceder se deben crear cookies");
 
-/*   Si acepta  comprueba si el valor de la cookie1 no existe si no existe  */
+/*   Si acepta  comprueba si el valor de la cookie1 no existe(no existe cookie) si no existe la crea y si ya existe le suma 1 al valor */
   if (confirmacion) {
     if (getCookie("cookie1") != "") {
+      setCookie("cookie1",parseInt(getCookie("cookie1"))+1,356);
+    }else { 
       setCookie("cookie1","1",356);
-    }else {
-      setCookie("cookie1",getCookie("cookie1")+1,356);
     }
     
   } else {
-    setCookie("cookie","1",0);
+    setCookie("cookie1","1",0);
   }
+
+  console.log(document.cookie);
+  document.write(`Número de veces que has accedido al sitio: ${getCookie("cookie1")}`);
 
   /* Crea cookies */
   function setCookie(cname, cvalue, exdays) {
@@ -32,7 +35,7 @@
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
-  /* Devuelve el valor de la cookie */
+  /* Devuelve el valor de la cookie si no existe devuelve " " */
   function getCookie(cname) {
       let name = cname + "=";
       let decodedCookie = decodeURIComponent(document.cookie);
