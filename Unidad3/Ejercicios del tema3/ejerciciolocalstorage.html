@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage</title>
+</head>
+<body>
+  <p id="salida"></p>
+  <script>
+  let salida = document.getElementById("salida");
+  let confirmacion = confirm("Se guardaran los datos en localStorage");
+//Comprobar si existe el localstore con el get le suma 1 sino la crea
+   if (confirmacion) {
+     crealocalstorage();
+     salida.innerHTML = (`El número de veces que has accedido es ${localStorage.getItem("localstore")}`);
+   }else {
+     borrarlocalstorage();
+   }
+
+    function crealocalstorage() {
+      localStorage.setItem("localstorage", 1);
+
+    }
+    function borrarlocalstorage() {
+      localStorage.removeItem("localstorage");
+    }
+  </script>
+</body>
+</html>
