@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage</title>
+</head>
+<body>
+    <p id="salida"></p>
+
+    <script>
+         let salida = document.getElementById("salida");
+  let confirmacion = confirm("Se guardaran los datos en sessionStorage");
+
+//Comprobar si existe el localstore con el get le suma 1 sino la crea
+   if (confirmacion) {
+      //Si existe elsessionStorage le suma 1 al valor si no lo crea
+      if (sessionStorage.getItem("sessionStorage") >= "1"){
+        sessionStorage.setItem("sessionStorage",parseInt(sessionStorage.getItem("sessionStorage"))+1);
+      }else {
+          cresessionStorage();
+      }
+   }else {
+     borrasessionStorage();
+   }
+   salida.innerHTML = (`El número de veces que has accedido es ${sessionStorage.getItem("sessionStorage")}`);
+
+    function cresessionStorage() {
+    sessionStorage.setItem("sessionStorage", "1");
+
+    }
+    function borrasessionStorage() {
+    sessionStorage.removeItem("sessionStorage");
+    }
+    </script>
+</body>
+</html>

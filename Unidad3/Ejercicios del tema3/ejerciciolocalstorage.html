@@ -8,19 +8,26 @@
 </head>
 <body>
   <p id="salida"></p>
+
   <script>
   let salida = document.getElementById("salida");
   let confirmacion = confirm("Se guardaran los datos en localStorage");
+
 //Comprobar si existe el localstore con el get le suma 1 sino la crea
    if (confirmacion) {
-     crealocalstorage();
-     salida.innerHTML = (`El número de veces que has accedido es ${localStorage.getItem("localstore")}`);
+      //Si existe el localstorage le suma 1 al valor si no lo crea
+      if (localStorage.getItem("localstorage") >= "1"){
+          localStorage.setItem("localstorage",parseInt((localStorage.getItem("localstorage")))+1);
+      }else {
+          crealocalstorage();
+      }
    }else {
      borrarlocalstorage();
    }
+   salida.innerHTML = (`El número de veces que has accedido es ${localStorage.getItem("localstorage")}`);
 
     function crealocalstorage() {
-      localStorage.setItem("localstorage", 1);
+      localStorage.setItem("localstorage", "1");
 
     }
     function borrarlocalstorage() {
