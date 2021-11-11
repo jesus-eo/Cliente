@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 1</title>
+</head>
+<body>
+ <!--  <label for="entrada">Introduce una serie de números</label>
+  <input type="text" name="" id="entrada">
+  <button id="enviar" type="submit">Enviar</button> -->
+
+  <script>
+    /* let entrada = document.getElementById("entrada");
+    let btn = document.getElementById("enviar"); */
+
+    let x = [1, 2, 3];
+    //Le pasa ese array número por número
+    media(...x);
+    //Combierte a array los parámetros que le pases, pero le puedes pasar todos los parámetros qu quieras
+    function media(...numeros) {
+      let sol = 0;
+      for (const i of numeros) {
+         sol += i;
+      }
+     
+      console.log(sol/numeros.length);
+      return sol/parseInt(numeros.length);
+    }
+
+  </script>
+</body>
+</html>
