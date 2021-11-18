@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio3</title>
+</head>
+<body>
+  <script>
+     let array = [];
+    //creo un array de 10 elementos
+    for (let i = 0; i < 10; i++) {
+      array.push(Math.floor((Math.random() * (1000 - 0) + 0)));
+    }
+
+    let menor = Math.min(...array);
+    let mayor = Math.max(...array);
+
+    let sol = array.filter(elem => elem < mayor && elem > menor);
+
+    console.log(sol);
+  </script>
+</body>
+</html>
