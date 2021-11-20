@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <div id="salida"></div>
+    <script>
+        let salida = document.getElementById("salida");
+        function coche(marca, modelo, color, anyoFabricacion) {
+            this.marca = marca;
+            this.modelo = modelo;
+            this.color = color;
+            this.anyoFabricacion = anyoFabricacion;
+        };
+        let coche1 = new coche("Peugeot", "Partner", "Gris", 2005);
+        let coche2 = new coche("Seat", "León", "Negro", 2006);
+        //e)Métodos mostrar datos
+        coche.prototype.mostrarDatos = function (){ salida.innerHTML = (`<ul>
+             <li> La marca es: ${this.marca} </li>
+             <li> El modelo es: ${this.modelo} </li>
+             <li> El color es: ${this.color} </li>
+             <li> El año de fabricación es: ${this.anyoFabricacion} </li>
+             </ul>`) };
+
+        coche.prototype.acelerar = function (velocidad) {
+            salida.innerHTML = (`<ul>
+             <li> El coche va a una velocidad de : ${velocidad} </li>
+             </ul>`) 
+        };
+
+        coche.prototype.arrancar = function (){ salida.innerHTML = (`<ul>
+             <li> El coche de la marca ${this.marca} ,modelo ${this.modelo} de color ${this.color} ha arrancado.
+             </li>
+             </ul>`) 
+        };
+
+        coche.prototype.frenar = function (){ salida.innerHTML = (`<ul>
+             <li> El coche de la marca ${this.marca} ,modelo ${this.modelo} de color ${this.color} ha parado.
+             </li>
+             </ul>`) 
+        };
+
+        verPropiedad1();
+        function verPropiedad1(){
+            let propiedades = "";
+            for (const key in coche1) {
+                if (typeof key != "fuction"){
+                propiedades += key + "<br>";
+                }    
+            }
+            salida.innerHTML = (`<p> Propiedades utilizando for in: <br> ${propiedades} </p>`);
+            /* salida.innerHTML = (`<p> Propiedades utilizando getOwnPropertiesNames: <br> ${coche1.hasOwnPropertyNames('marca')} </p>`); */
+            salida.innerHTML += (`<p> Propiedades utilizando object.keys: <br> ${Object.keys(coche1)} </p>`);
+        }
+        //Modifico la propiedad marca para que no se pueda ver
+        modificarDescriptores(coche1);
+        function modificarDescriptores(objeto){
+            Object.defineProperties(objeto,{
+                marca: {enumerable = false}
+            })
+        }
+        verPropiedad1();
+    
+    </script>
+</body>
+</html>

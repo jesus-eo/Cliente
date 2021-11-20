@@ -8,12 +8,13 @@
 </head>
 <body>
 <script>
-    /*  let array = [];
+     let array = [];
     //creo un array de 10 elementos
     for (let i = 0; i < 10; i++) {
       array.push(Math.floor((Math.random() * (1000 - 0) + 0)));
-    } */
-
+    } 
+    
+    //Crea un metodo filtrar que puedo utilizarlo con cualquier array, devuelve un array quitandole el máximo y el mínimo del array.
     Array.prototype.filtrarMaxMin = function ()  {
       console.log(this);
       let menor = Math.min(...this);
