@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio3</title>
+</head>
+<body>
+    <script>
+        const usuarios = [
+        { id: 1, name:"John", age: 18, address: {street: "5th", city: "NYC"} },
+        { id: 2, name:"Ali", age: 15, address: {street: "4th", city: "WST"} },
+        { id: 3, name:"Mass", age: 26, address: {street: "2th", city: "NYC"} },
+        { id: 4, name:"Mark", age: 38, address: {street: "6th", city: "LAC"} },
+        { id: 5, name:"Eve", age: 16, address: {street: "7th", city: "NYC"} },
+        { id: 6, name:"Rob", age: 57, address: {street: "21th", city: "LAC"} }
+        ]
+        let mayor18 = usuarios.filter(usuario => usuario.age >= 18 && usuario.address.city == "NYC");
+        console.log(mayor18);
+    </script>
+</body>
+</html>

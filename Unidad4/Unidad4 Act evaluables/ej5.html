@@ -9,6 +9,7 @@
 <body>
     <div id="salida"></div>
     <script>
+        /* a) Crear constructor con las propiedades: marca, modelo, color y año fabricación */
         let salida = document.getElementById("salida");
         function coche(marca, modelo, color, anyoFabricacion) {
             this.marca = marca;
@@ -16,34 +17,48 @@
             this.color = color;
             this.anyoFabricacion = anyoFabricacion;
         };
+        /*b) Instanciar dos objetos. */
         let coche1 = new coche("Peugeot", "Partner", "Gris", 2005);
         let coche2 = new coche("Seat", "León", "Negro", 2006);
+       /*  c) Mostrar por pantalla una propiedad con notación por puntos. Objeto 1 - marca */
+        salida.innerHTML += (`<p> Notación por puntos: ${coche1.marca}.</p>`);
+        /* d) Mostrar por pantalla una propiedad con notación por corchetes. Objeto 2 - color. */
+        salida.innerHTML += (`Notación por corchetes: ${coche2['color']}`);
         //e)Métodos mostrar datos
-        coche.prototype.mostrarDatos = function (){ salida.innerHTML = (`<ul>
+        coche.prototype.mostrarDatos = function (){ salida.innerHTML += (`<ul>
              <li> La marca es: ${this.marca} </li>
              <li> El modelo es: ${this.modelo} </li>
              <li> El color es: ${this.color} </li>
              <li> El año de fabricación es: ${this.anyoFabricacion} </li>
              </ul>`) };
-
+        /*f) Crear un método acelerar(velocidad). Mostrará    por pantalla que el coche ha acelerado a la velocidad
+        pasada. */
         coche.prototype.acelerar = function (velocidad) {
-            salida.innerHTML = (`<ul>
+            salida.innerHTML += (`<ul>
              <li> El coche va a una velocidad de : ${velocidad} </li>
              </ul>`) 
         };
-
-        coche.prototype.arrancar = function (){ salida.innerHTML = (`<ul>
+        /*  g) Crear un método con función interna arrancar.   Mostrará por pantalla que el coche de marca _,
+        modelo_, de color_ ha arrancado. */    
+        coche.prototype.arrancar = function (){ salida.innerHTML += (`<ul>
              <li> El coche de la marca ${this.marca} ,modelo ${this.modelo} de color ${this.color} ha arrancado.
              </li>
              </ul>`) 
         };
-
-        coche.prototype.frenar = function (){ salida.innerHTML = (`<ul>
+        /* h) Asignar una nueva propiedad cilindrada. */ /*++++++++++++++ Ptrguntsr como de crea propiedades esto como viene en los apuntes no funciona++++ */
+        Object.defineProperties(coche,{
+            cilindrada:{enumerable: true, configurable: true, writable: true},
+        });
+        
+        /*  i)Asignar un nuevo método frenar. Mostrará por pantalla que el coche de marca_, modelo_, color_ ha
+        parado. */
+        coche.prototype.frenar = function (){ salida.innerHTML += (`<ul>
              <li> El coche de la marca ${this.marca} ,modelo ${this.modelo} de color ${this.color} ha parado.
              </li>
              </ul>`) 
         };
-
+        /*   j) Muestra todas las propiedades de Objeto1 utilizando: for in , Object.hasOwnPropertyNames(),
+        Object.keys(). */
         verPropiedad1();
         function verPropiedad1(){
             let propiedades = "";
@@ -52,18 +67,22 @@
                 propiedades += key + "<br>";
                 }    
             }
-            salida.innerHTML = (`<p> Propiedades utilizando for in: <br> ${propiedades} </p>`);
+            salida.innerHTML += (`<p> Propiedades utilizando for in: <br> ${propiedades} </p>`);
             /* salida.innerHTML = (`<p> Propiedades utilizando getOwnPropertiesNames: <br> ${coche1.hasOwnPropertyNames('marca')} </p>`); */
             salida.innerHTML += (`<p> Propiedades utilizando object.keys: <br> ${Object.keys(coche1)} </p>`);
         }
-        //Modifico la propiedad marca para que no se pueda ver
-        modificarDescriptores(coche1);
-        function modificarDescriptores(objeto){
-            Object.defineProperties(objeto,{
-                marca: {enumerable = false}
-            })
-        }
+         /*    k) Modifica los descriptores de las propiedades para que no se muestren los métodos ni la propiedad
+         marca al usar for...in y Object.keys. Muestra de nuevo las propiedades del Objeto1. */
+         function modificarDescriptores(){
+            Object.defineProperties(coche,{
+            marca: {enumerable: false, configurable: false, writable: false}});
+        }    
+        /* No funciona */
+        modificarDescriptores();
         verPropiedad1();
+
+        /*Preguntar el apartado h no crea la propiedad y en el apartado k no modifica la propieedad para que no se pueda recorrer la propiedad y en el j el Object.hasOwnPropertyNames() no funciona */
+       
     
     </script>
 </body>

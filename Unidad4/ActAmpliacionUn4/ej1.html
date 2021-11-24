@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="char"> Introduce un carácter para saber si esta en la cadena introducida anteriormente:</label>
+    <input type="text" name="" id="char">
+    <button id="btn">Comprobar</button>
+    <p id="salida"></p>
+   
+    <script>
+        let salida = document.getElementById("salida");
+        let inputChar = document.getElementById("char");
+        let btn = document.getElementById("btn");
+        let entrada = prompt("Introduce una cadena de texto: ");
+        let arrayEntrada = [...entrada];
+        btn.addEventListener("click",function () {
+            if(arrayEntrada.some(value => value == inputChar.value)) {
+                salida.innerHTML = (`El carácter ${inputChar.value} esta en ${entrada}.`);
+            }else {
+                salida.innerHTML = (`El carácter ${inputChar.value} no esta en ${entrada}.`);
+            }
+        })
+    </script>
+</body>
+</html>

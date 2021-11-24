@@ -29,7 +29,6 @@ function compruebaEntrada(entrada){
         array.push(entrada);
         salida.style.color = "";
         return true;
-       
     }else {
         salida.innerHTML = (`Error, Inserte sólo texto`)
         salida.style.color = "red";
@@ -40,7 +39,6 @@ function compruebaEntrada(entrada){
 //si el valor es valido abrir una ventana y mostrar datos dentro
 if (valorValido) {
     let miVentana = window.open("","","width=600px,heigth=600px");
-    //*****Porque utilizando el operador ...array me da fallo */
     miVentana.document.write(`
     <p>Todas las palabras: ${array}.</p> 
     <p>Todas las palabras colocadas al revés: ${array.reverse()}.</p> 

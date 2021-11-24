@@ -48,8 +48,6 @@ function sumaImpares() {
     salida.style.color = "";
 }
 
-/* No entiendooooo let arrayInverso = (arraynumImpares) => arraynumImpares.reverse();
- */
 //Esta función busca un número en el array y comprueba si existe o no, si existe lo borra 
 function buscarNumArray() {
     console.log(arraynumImpares);
