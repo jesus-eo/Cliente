@@ -18,11 +18,11 @@
   <div id="salida"></div>
   <script>
     let salida = document.getElementById("salida");
-    document.addEventListener("mouseover", function (e){
+    document.addEventListener("mousemove", function (e){
       salida.innerHTML = (`clientX: ${e.clientX}px, clientY: ${e.clientY}px <br> screenX: ${e.screenX}px, screenY: ${e.screenY}px`);
       salida.style.left = e.clientX + "px";
       salida.style.top = e.clientY + "px";
     });
   </script>
 </body>
-</html>
+</html>]

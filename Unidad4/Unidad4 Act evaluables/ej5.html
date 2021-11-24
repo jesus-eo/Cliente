@@ -38,18 +38,14 @@
              <li> El coche va a una velocidad de : ${velocidad} </li>
              </ul>`) 
         };
-        /*  g) Crear un método con función interna arrancar.   Mostrará por pantalla que el coche de marca _,
-        modelo_, de color_ ha arrancado. */    
+        /*  g) Crear un método con función interna arrancar.   Mostrará por pantalla que el coche de marca _,modelo_, de color_ ha arrancado. */    
         coche.prototype.arrancar = function (){ salida.innerHTML += (`<ul>
              <li> El coche de la marca ${this.marca} ,modelo ${this.modelo} de color ${this.color} ha arrancado.
              </li>
              </ul>`) 
         };
-        /* h) Asignar una nueva propiedad cilindrada. */ /*++++++++++++++ Ptrguntsr como de crea propiedades esto como viene en los apuntes no funciona++++ */
-        Object.defineProperties(coche,{
-            cilindrada:{enumerable: true, configurable: true, writable: true},
-        });
-        
+        /* h) Asignar una nueva propiedad cilindrada. */ 
+        coche.prototype.cilindrada = "";
         /*  i)Asignar un nuevo método frenar. Mostrará por pantalla que el coche de marca_, modelo_, color_ ha
         parado. */
         coche.prototype.frenar = function (){ salida.innerHTML += (`<ul>
@@ -68,20 +64,18 @@
                 }    
             }
             salida.innerHTML += (`<p> Propiedades utilizando for in: <br> ${propiedades} </p>`);
-            /* salida.innerHTML = (`<p> Propiedades utilizando getOwnPropertiesNames: <br> ${coche1.hasOwnPropertyNames('marca')} </p>`); */
+            salida.innerHTML += (`<p> Propiedades utilizando getOwnPropertiesNames: <br> ${Object.getOwnPropertyNames(coche1)} </p>`); 
             salida.innerHTML += (`<p> Propiedades utilizando object.keys: <br> ${Object.keys(coche1)} </p>`);
         }
-         /*    k) Modifica los descriptores de las propiedades para que no se muestren los métodos ni la propiedad
-         marca al usar for...in y Object.keys. Muestra de nuevo las propiedades del Objeto1. */
+         /*    k) Modifica los descriptores de las propiedades para que no se muestren los métodos ni la propiedad, marca al usar for...in y Object.keys. Muestra de nuevo las propiedades del Objeto1. */
          function modificarDescriptores(){
-            Object.defineProperties(coche,{
+            Object.defineProperties(coche1,{
             marca: {enumerable: false, configurable: false, writable: false}});
         }    
-        /* No funciona */
         modificarDescriptores();
         verPropiedad1();
 
-        /*Preguntar el apartado h no crea la propiedad y en el apartado k no modifica la propieedad para que no se pueda recorrer la propiedad y en el j el Object.hasOwnPropertyNames() no funciona */
+        /*Terminar El k para que no muestre los metodos y mostrar los métodos para que el profesor los vea */
        
     
     </script>
