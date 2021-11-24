@@ -5,13 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ejercicio1</title>
+  <style>
+    #salida {
+      background-color: yellow;
+      height: 100px;
+      width: 300px;
+      position: fixed;
+    }
+  </style>
 </head>
 <body>
   <div id="salida"></div>
   <script>
     let salida = document.getElementById("salida");
     document.addEventListener("mouseover", function (e){
-      salida.innerHTML = e.clientX
+      salida.innerHTML = (`clientX: ${e.clientX}px, clientY: ${e.clientY}px <br> screenX: ${e.screenX}px, screenY: ${e.screenY}px`);
+      salida.style.left = e.clientX + "px";
+      salida.style.top = e.clientY + "px";
     });
   </script>
 </body>
