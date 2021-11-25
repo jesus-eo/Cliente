@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #salida  {
+            height: 100px;
+            width: 100px;
+            background-color: blueviolet;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div id="salida"></div>
+    <script>
+        let salida = document.getElementById('salida');
+        document.addEventListener("keypress",function (e) {
+           /* console.log(e.keyCode); */
+           /*  console.log(e.key); */ //Las teclas de dirección no las muestra.
+           mueveCuadrado(e.key);
+        })
+        let px = 10;
+        function mueveCuadrado(teclaPulsada) {
+            console.log(teclaPulsada);
+            switch (teclaPulsada) {
+                case 'w': 
+                    salida.style.top = `${px}px`;
+                    px +=10;
+                    break;
+                    case 's': 
+                    console.log("entra");
+                    salida.style.bottom = `${px}px`;
+                    px +=10;
+                    break;
+                    case 'd': 
+                    salida.style.right = `${px}px`;
+                    px +=10;
+                    break;
+                    case 'a': 
+                    salida.style.left = `${px}px`;
+                    px +=10;
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

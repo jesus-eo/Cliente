@@ -38,9 +38,16 @@
   <script>
     let cargando = document.getElementById('idcargando');
     let img = document.getElementById('imagenes');
-    window.onload();
+    window.onload = function () {
+      cambiardisplay();
+    };
 
-    function cambiardisplay
+    function cambiardisplay() {
+    img.style.display = "initial";
+    console.log("Entra");
+    cargando.style.display = 'none';
+    }
+   /*  No da tiempo a verse el cargando */
   </script>
 </body>
 </html>

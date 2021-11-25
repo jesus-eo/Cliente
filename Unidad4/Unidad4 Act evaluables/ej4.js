@@ -21,8 +21,9 @@ function typeWriter() {
         setTimeout(typeWriter, speed);
     }
 }
-/* setInterval(cursor,500);
+setInterval(cursor,500);
+let muestra = true;
 function cursor() {
-    salida.innerHTML += "|";
-} */
-console.log(EntradaFiltrada);
+    muestra ? salida.innerHTML = "|" : salida.innerHTML = "";
+    muestra ? muestra = false : muestra = true;
+}
