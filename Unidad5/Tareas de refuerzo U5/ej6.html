@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+    <style>
+        table, tr, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table {
+            background-color: coral;
+            margin: auto;
+            
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="formulario">
+        <table>
+            <tr>
+                <td>DNI:</td>
+                <td><input type="text" name="" id="dni" required></td>
+            </tr>
+            <tr>
+                <td>Nombre:</td>
+                <td><input type="text" name="" id="nombre" pattern="^\d{2}.\d{3}.\d{3}-[A-Z]" title="El formato debe ser 99.999.999-X" required></td>
+            </tr>
+            <tr>
+                <td>F.Nac:</td>
+                <td><input type="text" name="" id="fecha" required></td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td><input type="text" name="" id="email" required></td>
+            </tr>
+            <tr>
+                <td>Pág.Web:</td>
+                <td><input type="text" name="" id="url" required></td>
+            </tr>
+            <tr>
+                <td>Contraseña:</td>
+                <td><input type="password" name="" id="contraseña" required></td>
+            </tr>
+            <tr>
+                <td>confirmar Contraseña:</td>
+                <td><input type="password" name="" id="confirmacontraseña" required></td>
+            </tr>
+            <tr>
+                <td colspan="2s">
+                    <button id="btn">Guardar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
