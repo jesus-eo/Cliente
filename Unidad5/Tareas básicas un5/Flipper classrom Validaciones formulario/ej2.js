@@ -34,7 +34,7 @@ function validar(e){
         return true;
     }else {
         let formulario = document.getElementById("formulario");
-        e.preventDefault(formulario);
+        e.preventDefault();
         return false;
     }
 }

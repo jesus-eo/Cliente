@@ -56,7 +56,7 @@
        if(validaNombre() && validaTelefono() && validaCheck() && confirm("Pulsa si deseas enviar este formulario")) {
            return true;
        }else{
-           e.preventDefault(formulario);
+           e.preventDefault();
            return false;
        }
    }

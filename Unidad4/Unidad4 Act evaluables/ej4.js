@@ -21,6 +21,7 @@ function typeWriter() {
         setTimeout(typeWriter, speed);
     }
 }
+
 setInterval(cursor,500);
 let muestra = true;
 function cursor() {

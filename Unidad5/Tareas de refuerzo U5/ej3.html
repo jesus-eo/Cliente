@@ -11,7 +11,7 @@
         document.addEventListener('mousedown', function (e){
             console.log(e.button);
             if (e.button == 2) {
-                this.disabled = true;/*No se como acceder al boton*/
+                e.button.disabled = true;/*No se como acceder al boton*/
             }
         })
     </script>
