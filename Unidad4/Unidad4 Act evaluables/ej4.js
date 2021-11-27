@@ -1,4 +1,5 @@
 
+let cursorint = document.getElementById("cursor");
 let entrada = prompt("Inserta una frase");
 //Convierto en array la entrada y compruebo si no es número crea un nuevo array con los elementos que cumplan esa condición y lo convierto a cadena con el join.
 let salida = document.getElementById("salida");
@@ -15,16 +16,21 @@ function typeWriter() {
     console.log(i);
     console.log(EntradaFiltrada);
     if (i < parseInt(EntradaFiltrada.length)) {
-        console.log("ENTRA");
-        salida.innerHTML += EntradaFiltrada.charAt(i);
+       
+            salida.innerHTML += EntradaFiltrada.charAt(i);
         i++;
         setTimeout(typeWriter, speed);
     }
 }
 
+
+let color = "black";
 setInterval(cursor,500);
-let muestra = true;
+
 function cursor() {
-    muestra ? salida.innerHTML = "|" : salida.innerHTML = "";
-    muestra ? muestra = false : muestra = true;
+    console.log(color);
+    color == "black" ? color = "white" : color = "black";
+    cursorint.style.color = color;
+    cursorint.style.fontSize = "18px";
 }
+
