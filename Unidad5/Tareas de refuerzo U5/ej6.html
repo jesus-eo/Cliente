@@ -22,31 +22,34 @@
         <table>
             <tr>
                 <td>DNI:</td>
-                <td><input type="text" name="" id="dni" required></td>
+                <td><input type="text" name="" id="dni" pattern="^\d{2}.\d{3}.\d{3}-[A-Z]" title="El formato debe ser 99.999.999-X"required>
+                </td>
             </tr>
             <tr>
                 <td>Nombre:</td>
-                <td><input type="text" name="" id="nombre" pattern="^\d{2}.\d{3}.\d{3}-[A-Z]" title="El formato debe ser 99.999.999-X" required></td>
+                <td><input type="text" name="" id="nombre" pattern="[A-Za-zñ]+[\s]*){2,4}" title="Introduzca al menos un nombre y un apellido, Max 2nombres y 2 apellidos" required></td>
             </tr>
+            <!--Preguntar como es la expresión regular para hacer un rango que valla del {1-12}-->
             <tr>
                 <td>F.Nac:</td>
-                <td><input type="text" name="" id="fecha" required></td>
+                <td><input type="text" name="" id="fecha" pattern="^((30|31|([1-2]{1}\d{1})|0?[1-9{1}])[/](10|11|12|([0]?[1-9]{1}))[/][1-9]{1}\d{3})$" title="Formato valido: dd/mm/yyyy" required></td>
             </tr>
             <tr>
                 <td>E-mail</td>
-                <td><input type="text" name="" id="email" required></td>
+                <td><input type="text" name="" id="email" pattern="[a-zA-Z]{3}@[a-zA-z]{3}.[a-zA-Z]{3}" 
+                title="Formato valido: xxx@yyy.zzz" required></td>
             </tr>
             <tr>
                 <td>Pág.Web:</td>
-                <td><input type="text" name="" id="url" required></td>
+                <td><input type="text" name="" id="url" pattern="(http://www.[a-zA-Z]{3}.[a-zA-Z]{3})" title="Formato valido: (http://www) obligatorio ya continuación .xxx.yyy" required></td>
             </tr>
             <tr>
                 <td>Contraseña:</td>
-                <td><input type="password" name="" id="contraseña" required></td>
+                <td><input type="password" name="" id="contraseña" minlength="8" maxlength="10" title="Debe contener entre 8 y 10 caracteres" required></td>
             </tr>
             <tr>
                 <td>confirmar Contraseña:</td>
-                <td><input type="password" name="" id="confirmacontraseña" required></td>
+                <td><input type="password" name="" id="confirmacontraseña" minlength="8" maxlength="10" title="Debe contener entre 8 y 10 caracteres" required></td>
             </tr>
             <tr>
                 <td colspan="2s">
@@ -55,5 +58,22 @@
             </tr>
         </table>
     </form>
+    <script>
+        let btn = document.getElementById("btn");
+        let formulario = document.getElementById("formulario");
+        btn.addEventListener("click",vaciarCampos);
+
+        function vaciarCampos (e){
+            for (let i = 0; i < formulario.elements.length; i++) {
+                    console.log(formulario.elements[i].pattern);
+                    console.log(typeof formulario.elements[i].value);
+                    if (!(formulario.elements[i].pattern.test(formulario.elements[i].value))) { /*FAlla el test dice que no es una función*/
+                        console.log("entra");
+                        formulario.elements[i].value = " ";
+                        formulario.e.preventDefault();
+                    }
+            }
+        }
+    </script>
 </body>
 </html>
