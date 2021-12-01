@@ -18,9 +18,9 @@
     <div id="salida"></div>
     <script>
         let salida = document.getElementById('salida');
-        document.addEventListener("keypress",function (e) {
-           /* console.log(e.keyCode); */
-           /*  console.log(e.key); */ //Las teclas de dirección no las muestra.
+        document.addEventListener("keyup",function (e) {
+            console.log(e.keyCode); 
+            console.log(e.key); 
            mueveCuadrado(e.key);
         })
         let px = 10;
@@ -33,16 +33,16 @@
                     break;
                     case 's': 
                     console.log("entra");
-                    salida.style.bottom = `${px}px`;
-                    px +=10;
+                    salida.style.top = `${px}px`;
+                    px -=10;
                     break;
                     case 'd': 
                     salida.style.right = `${px}px`;
                     px +=10;
                     break;
                     case 'a': 
-                    salida.style.left = `${px}px`;
-                    px +=10;
+                    salida.style.right = `${px}px`;
+                    px -=10;
                     break;
                 default:
                     break;
