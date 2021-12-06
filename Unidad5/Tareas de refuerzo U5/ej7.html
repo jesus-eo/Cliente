@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 6</title>
+    <title>Ejercicio 7</title>
     <style>
         table, tr, td {
             border: 1px solid black;
@@ -77,88 +77,122 @@
         } */
         btn.addEventListener("click", validar);
 
+        /* Hay que vaciar el valor de todos los elementos del formulario con setCustomValidity porque se queda guardado la cadena introducida anteriormente */
+        function limpiarCustomvaliditi() {
+            for (const elemento of formulario.elements) {
+              elemento.setCustomValidity("");
+            }
+        }
         function validaDni() {
           let dni =  document.getElementById("dni");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!dni.checkValidity()) {
               //si el campo dni esta vacio
              if(dni.validity.valueMissing){
-                 dni.reportValidity();
+                 dni.setCustomValidity("Rellene el campo DNI");
              }
              if(dni.validity.patternMismatch){
-                 dni.reportValidity();
+                 dni.reportValidity("Formato invalido");
                  dni.value = " ";
              }
+             
+             dni.reportValidity();
+             return false;
           }
+          return true;
         }
         function validaNombre() {
           let nombre =  document.getElementById("nombre");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!nombre.checkValidity()) {
               
              if(nombre.validity.valueMissing){
-                 nombre.reportValidity();
+                 nombre.setCustomValidity("Rellena el campo nombre")
              }
              if(nombre.validity.patternMismatch){
-                 nombre.reportValidity();
+                nombre.setCustomValidity("Formato invalido");
                  nombre.value = " ";
              }
+             nombre.reportValidity();
+             return false;
           }
+          return true;
         }
         function validaFecha() {
           let fecha =  document.getElementById("fecha");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!fecha.checkValidity()) {
              if(fecha.validity.valueMissing){
-                 fecha.reportValidity();
+                fecha.setCustomValidity("Rellena el campo fecha");
              }
              if(fecha.validity.patternMismatch){
-                 fecha.reportValidity();
+                fechs.setCustomValidity("Formsto frvhs invalido");
                  fecha.value = " ";
              }
+             fecha.reportValidity();
+             return false;
           }
+          return true;
         }
         function validaMail() {
           let email =  document.getElementById("email");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!email.checkValidity()) {
              if(email.validity.valueMissing){
-                 email.reportValidity();
+                email.setCustomValidity("Rellena el campo email");
              }
              if(email.validity.patternMismatch){
-                 email.reportValidity();
+                email.setCustomValidity("Formato email invalido");
                  email.value = " ";
              }
+             email.reportValidity();
+             return false;
           }
+          return true;
         }
         function validaUrl() {
           let url =  document.getElementById("url");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!url.checkValidity()) {
              if(url.validity.valueMissing){
-                 url.reportValidity();
+                url.setCustomValidity("Rellena el campo Pág.web");
+                 
              }
              if(url.validity.patternMismatch){
-                 url.reportValidity();
+                url.setCustomValidity("Formato Pág.web incorrecto");
                  url.value = " ";
              }
+            
+             url.reportValidity();
+             return false;
           }
+          return true;
         }
         function validaContraseña() {
           let Contraseña =  document.getElementById("Contraseña");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!Contraseña.checkValidity()) {
              if(Contraseña.validity.valueMissing){
-                 Contraseña.reportValidity();
+                contraseña.setCustomValidity("Rellena el campo Pág.web");
              }
              if(Contraseña.validity.patternMismatch){
-                 Contraseña.reportValidity();
+                contraseña.setCustomValidity("Formato contraseña incorrecto");
                  Contraseña.value = " ";
              }
+             return false;
+             Contraseña.reportValidity();
           }
+          return true;
         }
         function validaConfContra() {
           let confirmacontraseña =  document.getElementById("confirmacontraseña");
+          limpiarCustomvaliditi();
           //Si hay error
           if (!confirmacontraseña.checkValidity()) {
              if(confirmacontraseña.validity.valueMissing){
@@ -168,10 +202,14 @@
                  confirmacontraseña.reportValidity();
                  confirmacontraseña.value = " ";
              }
+             Contraseña.reportValidity();
+             return false;
           }
+          return true;
         }
 
         function validar(e){
+            limpiarCustomvaliditi()
             if(!validaNombre() && validaUrl() && validaMail() && validaFecha() && validaContraseña() && validaConfContra() && validaDni()){
                 e.preventDefault();
             }

@@ -8,11 +8,9 @@
 </head>
 <body>
     <script>
-        document.addEventListener('mousedown', function (e){
+        document.addEventListener('contextmenu', function (e){
             console.log(e.button);
-            if (e.button == 2) {
-                e.button.disabled = true;/*No se como acceder al boton*/
-            }
+            e.preventDefault();
         })
     </script>
 </body>
