@@ -13,3 +13,5 @@ function validar() {
         salida.style.color = "red";
     }
 }
+
+!isNaN(25)
