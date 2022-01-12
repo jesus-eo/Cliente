@@ -1,0 +1,42 @@
+<!-- Crear una aplicación que en un div tenga un h1 y un botón. Al pulsar dicho botón, debe cambiar el contenido del div por el texto de un archivo de texto que se encuentra en el servidor. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <div id="container">
+        <h1>AJAX</h1>
+        <button id="btn">Cambia contenido</button>
+    </div>
+    <script>
+      /*   Creamos el objeto
+        Cada vez que se llame a la función (pulsar el botón) va cambiando el estado del objeto usando la propiedad onreadystatechange que devuelve el estado (1,2,3,4)
+        Comprobamos el estado utilizando una función anónima con this.readyState accedemos al objeto xhr para ver su estado(1,2,3) */
+        document.getElementById('btn').addEventListener('click',cambiaContenido);
+        function cambiaContenido() {
+            let xhr = new XMLHttpRequest(); 
+            xhr.onreadystatechange = function() {
+                if (this.readyState==4 && this.status==200){
+                    document.getElementById('container').innerHTML = this.responseText; //Si fuera xml seria this.responseXML
+                }
+            };
+      /*   Enviar solicitud
+        Métodos send() y open()
+        open(): especifica la solicitud que quieres mandar
+        -GET/POST
+        -Archivos:txt, php, xml,json...
+        -Método de envio true o false --true es asíncrono */
+        
+        xhr.open('GET', 'holamundo.txt', true);
+
+        /* send(): envía la solicitud al servidor.
+        Si utilizamos POST debemos parar los datos por parámetro */
+        xhr.send();
+        }
+    </script>
+</body>
+</html>
