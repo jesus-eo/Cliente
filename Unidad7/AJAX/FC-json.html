@@ -16,6 +16,7 @@
        
     } */
     document.getElementById('btn').addEventListener('click',mostrar);
+
     function mostrar() {
         
         let xhr = new XMLHttpRequest();
@@ -31,10 +32,10 @@
                 let cadena = JSON.stringify(this.responseText);
                 document.getElementById('parrafo').innerHTML += `<br> El objeto ${jsonRequest} pasado a cadena es: ${cadena}`;
             }
-            xhr.open("GET","datos.json",true);
-            xhr.send();
+            
         }
-        
+        xhr.open("GET","datos.json",true);
+        xhr.send();
     }
 </script>
 </html>
