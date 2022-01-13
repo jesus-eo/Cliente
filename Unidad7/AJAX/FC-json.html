@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrando JSON</title>
+</head>
+<body>
+    <button id="btn">Mostrar</button>
+    <p id="parrafo"></p>
+</body>
+<script>
+   /*  window.addEventListener("load", inicio);
+    function inicio(){
+       
+    } */
+    document.getElementById('btn').addEventListener('click',mostrar);
+    function mostrar() {
+        
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            console.log("entra");
+            if (this.readyState == 4 && this.status == 200){
+                //Convierto en json la request
+                let jsonRequest = JSON.parse(this.responseText);
+                //Muestro los datos
+                document.getElementById('parrafo').innerHTML = jsonRequest.nombre + "nacio en " + jsonRequest.pais + "fecha" + jsonRequest.fecha;
+
+                //Convertir objeto js en cadena
+                let cadena = JSON.stringify(this.responseText);
+                document.getElementById('parrafo').innerHTML += `<br> El objeto ${jsonRequest} pasado a cadena es: ${cadena}`;
+            }
+            xhr.open("GET","datos.json",true);
+            xhr.send();
+        }
+        
+    }
+</script>
+</html>

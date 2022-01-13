@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-Documentosxml</title>
+</head>
+<body>
+    <div id="divcontainer">
+        <h1>AJAX-XML</h1>
+        <button id="btn">Cambiar</button>
+    </div>
+    <table id="tabla" border=1></table>
+    <script>
+        document.getElementById('btn').addEventListener('click',cargarCatalogo);
+        let xhr = new XMLHttpRequest();
+
+        function cargarCatalogo() {
+            xhr.onreadystatechange = function () {
+                if(this.readyState == 4 && this.status==200){
+                    mostrarXML(this); /* Le paso el objeto xhr para ver si request */
+                };
+            }
+            xhr.open("GET","cd_catalogo.xml",true);
+            xhr.send();
+        }
+        
+        function mostrarXML(xhr){
+            let docXml = xhr.responseXML;/*  Obtenemos el documento en XML(ETIQUETAS html) */
+            let tabla = "<tr><th>Artista</th><th>Titulo</th></tr>";
+            let cd =docXml.getElementsByTagName('CD');//Obtengo un array con todos los cd(ETIQUETAS HTML).
+            /* console.log(cd); */
+           /*  cd.forEach((element) => {
+               console.log(element);
+            }); */
+            for (const i of cd) {
+               /*  console.log(i.querySelector("ARTIST").textContent); OBtenemos la etiqueta artista y para sacarle el contenido usamos textContent */
+               tabla += `<tr><td>${i.querySelector("ARTIST").textContent}</td><td>${i.querySelector("TITLE").textContent}</td></tr>`;
+            }
+            document.getElementById('tabla').innerHTML = tabla;
+        }
+    </script>
+</body>
+</html>
