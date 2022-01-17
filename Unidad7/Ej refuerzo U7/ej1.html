@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ1</title>
+</head>
+<body>
+    <button id="btn">Crear enlaces</button>
+    <div id="enlaces"></div>
+</body>
+<script>
+    document.getElementById('btn').addEventListener('click',mostrarEnlaces);
+
+    function mostrarEnlaces(){
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            
+            if (this.readyState == 4 && this.status == 200){
+                //Convierto en json la request
+                let jsonResponse = JSON.parse(this.responseText);
+                datosEnlaces(jsonResponse);  
+            }           
+        }
+        xhr.open("GET","Ficheros/myTutorials.json",true);
+        xhr.send();
+    }
+
+    const divi = document.getElementById("enlaces");
+    function crearEnlaces(title, url) {
+        const enlace = document.createElement("a");
+        const br = document.createElement("br");
+        enlace.textContent = title;
+        enlace.setAttribute("href",url);
+        divi.appendChild(enlace);
+        divi.appendChild(br);
+    }
+
+    function datosEnlaces(jsonResponse) {
+        for (const iterator of jsonResponse) {
+            const title = iterator.title;
+            const url = iterator.url;
+            crearEnlaces(title, url);
+        }
+    }
+</script>
+</html>

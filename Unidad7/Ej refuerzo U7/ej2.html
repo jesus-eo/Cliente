@@ -1,0 +1,61 @@
+<!-- Realizar una web que al pulsar un botón se realice una petición asíncrona al archivo
+servidor.php y muestre en el documento la información de los empleados del JSON que se
+envía como respuesta. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    <div id="divcontainer"></div>
+    <button id="btn">Enviar</button>
+</body>
+<script>
+     document.getElementById('btn').addEventListener('click', mostrar);
+     const divi = document.getElementById("divcontainer");
+
+     function mostrar(){
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            
+            if (this.readyState == 4 && this.status == 200){
+                //Convierto en json la request
+                let jsonResponse =JSON.parse(this.responseText);
+               /*  console.log(jsonResponse); */
+                datos(jsonResponse);  
+            }           
+        }
+        /* xhr.open("GET","Ficheros/servidor.php",true); */
+        xhr.open("GET","Ficheros/servidor.php",true);
+        xhr.setRequestHeader("Content-type", "application/json");//Para método post indicar estos parámetros
+        xhr.send();
+    }
+
+    
+    function crearEnlaces(firstName, lastName) {
+        const nombre = document.createElement("p");
+        const apellido = document.createElement("p");
+        const br = document.createElement("br");
+        nombre.textContent = firstName;
+        apellido.textContent = lastName
+        divi.appendChild(nombre);
+        divi.appendChild(apellido);
+        divi.appendChild(br);
+    }
+
+    function datos(jsonResponse) {
+       for (const key in jsonResponse) {
+           let x = jsonResponse.key[1];
+          console.log(JSON.stringify(x));
+       }
+     /*    for (const iterator of jsonResponse) {
+            const firstName = iterator.firstName;
+            const lastName = iterator.lastName;
+            crearEnlaces(firstName, lastName);
+        } */
+    }
+</script>
+</html>

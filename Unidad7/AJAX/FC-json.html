@@ -21,12 +21,12 @@
         
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
-            console.log("entra");
+            
             if (this.readyState == 4 && this.status == 200){
                 //Convierto en json la request
                 let jsonRequest = JSON.parse(this.responseText);
                 //Muestro los datos
-                document.getElementById('parrafo').innerHTML = jsonRequest.nombre + "nacio en " + jsonRequest.pais + "fecha" + jsonRequest.fecha;
+                document.getElementById('parrafo').innerHTML = jsonRequest.nombre + " nacio en " + jsonRequest.pais + " fecha " + jsonRequest.nacimiento;
 
                 //Convertir objeto js en cadena
                 let cadena = JSON.stringify(this.responseText);
