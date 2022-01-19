@@ -1,0 +1,80 @@
+<!-- Crea una página que tenga un botón “Solicitar usuarios” que, al ser pulsado, solicite unos datos de manera
+asíncrona a https://reqres.in/api/users y muestre la información por pantalla. Debe mostrar el
+número total de páginas, la página actual y una tabla que muestra id, nombre, apellido e email de los
+usuarios enviados. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Solicitar usuarios</button>
+    <div id="pagina"></div>
+    <div id="containerTabla"></div>
+</body>
+<script>
+
+document.getElementById('btn').addEventListener('click',mostrar);
+function mostrar() {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+           //Convierto en json la request
+            let jsonRequest = JSON.parse(this.responseText);
+                crearTabla(jsonRequest);
+                muestraPagina(jsonRequest);            
+            }
+            
+        }
+        xhr.open("GET","https://reqres.in/api/users",true);
+        xhr.send();
+    }
+
+
+function muestraPagina(jsonRequest){
+    document.getElementById('pagina').innerHTML = `Página: ${jsonRequest.page} Total Página: ${jsonRequest.total_pages}`;
+}
+
+
+function crearTabla(jsonRequest){
+        console.log(jsonRequest);
+
+        let tabla = document.createElement("table");  //Creo la tabla
+        tabla.setAttribute("border","2");
+         const thead = document.createElement("tr");   //Creo la el tr del thead
+         const thid = document.createElement("th"); //Creo el th del thead
+         thid.textContent = "Id";              //Inserto el string al th
+         const thnombre = document.createElement("th");
+         thnombre.textContent = "Nombre";
+
+         thead.appendChild(thid);                    //Añado los th dentro del tr
+         thead.appendChild(thnombre);
+         tabla.appendChild(thead);                         //Añado los tr a la tabla
+         
+         const arrayDatosjson = jsonRequest.data;
+        for (const data of arrayDatosjson) {
+            const trbody = document.createElement("tr");//trbody
+            const tdid = document.createElement("td"); //td
+            tdid.textContent = data.id;
+            const tdnombre = document.createElement("td"); //td
+            tdnombre.textContent = data.first_name;
+            const tdapellido = document.createElement("td"); //td
+            tdapellido.textContent = data.last_name;
+            const tdemail = document.createElement("td");  //td
+            tdemail.textContent = data.email;
+            trbody.appendChild(tdid);
+            trbody.appendChild(tdnombre);
+            trbody.appendChild(tdapellido);
+            trbody.appendChild(tdemail);
+            tabla.appendChild(trbody);
+        }
+        document.getElementById('containerTabla').appendChild(tabla);
+        }
+
+
+</script>
+</html>

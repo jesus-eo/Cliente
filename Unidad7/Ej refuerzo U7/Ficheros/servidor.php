@@ -1,9 +1,10 @@
 <?php
 	/* header('Content-type: application/json; charset=utf-8'); */
 
-	echo '{ "employees" : [' .
+	echo '{ "employes" : [' .
 			'{ "firstName":"John" , "lastName":"Doe" },' .	
 			'{ "firstName":"Anna" , "lastName":"Smith" },' .
-			'{ "firstName":"Peter" , "lastName":"Jones" } ]}' 
-
+			'{ "firstName":"Peter" , "lastName":"Jones" } ]}' ;
+	
+	
 ?>
