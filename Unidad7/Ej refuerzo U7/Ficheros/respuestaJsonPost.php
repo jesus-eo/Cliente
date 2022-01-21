@@ -1,9 +1,11 @@
 <?php
 
 	//recibo los datos y los decodifico con PHP
+	/* var_dump($_REQUEST); */
+	/* $data = $_REQUEST['json']; */
 	$data = json_decode(file_get_contents('php://input'));
 	$art=$data->articulo;
-
+	/* var_dump($data); */
 	
 
 	class Articulo {

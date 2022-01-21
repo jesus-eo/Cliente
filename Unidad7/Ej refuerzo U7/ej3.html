@@ -10,6 +10,42 @@ como respuesta. -->
     <title>Document</title>
 </head>
 <body>
-    
-</body>
+    <h2> Realizar una web que al pulsar un botón se realice una petición asíncrona GET al archivo
+        respuestaJsonGet.php y muestre en el documento la información del JSON que se envía
+        como respuesta.</h2>
+        <br>
+    <button id='btn'>Mostrar información</button>
+    <div>
+        <p id="p1"></p>
+        <p id="p2"></p>
+    </div>
+<script>
+      document.getElementById('btn').addEventListener('click', mostrar);
+    /* const divi = document.getElementById("divcontainer"); */
+
+    function mostrar() {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                //Convierto en json la request
+                let jsonResponse = JSON.parse(this.responseText);
+                /*  console.log(jsonResponse); */
+                datosArticulos(jsonResponse);
+            }
+        }
+        xhr.open("GET", "Ficheros/respuestaJsonGet.php", true);
+       /*  xhr.setRequestHeader("Content-type", "application/json"); */
+        //Para método post indicar estos parámetros
+        xhr.send();
+    }
+    function datosArticulos(jsonResponse) {
+        console.log(jsonResponse);
+        document.getElementById('p1').innerHTML = `ID: ${jsonResponse.id} <br> Nombre: ${jsonResponse.nombre} <br> Categoria: ${jsonResponse.categoria} <br> Precio Salida: ${jsonResponse.precioDeSalida} <br>`;
+        document.getElementById('p2').innerHTML = `Detalles: `;
+        for (const detalle of jsonResponse.detalles) {
+            document.getElementById('p2').innerHTML += `${detalle} <br>`;
+        }
+    }
+</script>
 </html>

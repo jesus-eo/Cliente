@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej4</title>
+</head>
+<body>
+    <h3>Realizar una web que al pulsar un botón se realice una petición asíncrona POST al
+        archivo respuestaJsonPost.php y muestre en el documento la información del JSON que se
+        envía como respuesta</h3>
+        <button id="btn">Mostrar documento</button>
+        <div>
+            <p id="p1"></p>
+            <p id="p2"></p>
+        </div>
+    <script>
+        
+        document.getElementById('btn').addEventListener('click', enviar);
+        
+        
+        function enviar() {
+          const json = JSON.stringify({'articulo': 0});
+          let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                 if (this.readyState == 4 && this.status == 200){
+                 let jsonResponse = JSON.parse(this.responseText);
+                 datosArticulos(jsonResponse);
+                 console.log(jsonResponse);
+                }  
+            }
+        xhr.open("POST","Ficheros/respuestaJsonPost.php",true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(json);
+        }
+
+        function datosArticulos(jsonResponse) {
+        console.log(jsonResponse);
+        document.getElementById('p1').innerHTML = `ID: ${jsonResponse.id} <br> Nombre: ${jsonResponse.nombre} <br> Categoria: ${jsonResponse.categoria} <br> Precio Salida: ${jsonResponse.precioDeSalida} <br>`;
+        document.getElementById('p2').innerHTML = `Detalles: `;
+        for (const detalle of jsonResponse.detalles) {
+            document.getElementById('p2').innerHTML += `${detalle} <br>`;
+        }
+    }
+    </script>
+</body>
+</html>

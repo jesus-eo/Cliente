@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas</title>
+</head>
+<body>
+    <h4>Crear una función que reciba un número de milisegundos y genere un temporizador que escriba el
+        texto “Tiempo concluido” cuando pasen dichos milisegundos.
+        En el caso de que no se cumpla la promesa, el resultado del texto será “El tiempo no va bien”.
+        Se decidirá que la promesa no se ha cumplido cuando pase el doble de tiempo que el indicado en
+        milisegundos.
+    </h4>
+    <p id="salida"></p>
+    <script>
+        function temporizador(ms){
+            return new Promise(function (resolve, reject){  //Creo la promesa 
+            setTimeout(()=>{
+                resolve("Tiempo concluido");                //Si es cierta 
+            },ms);
+            setTimeout(()=>{
+                reject("El tiempo no va bien")              //Si no es cierta
+            },ms*2);
+            })
+        }
+
+        temporizador(2500)
+        .then((resolve)=> document.getElementById('salida').innerHTML = resolve)
+        .catch((reject)=>document.getElementById('salida').innerHTML = reject);
+    </script>
+</body>
+</html>

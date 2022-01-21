@@ -1,0 +1,101 @@
+<!-- Actividad 7A05 - Petición POST sobre https://reqres.in/
+○ Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.
+○ Al pulsar el botón, se debe realizar una llamada asíncrona a https://reqres.in/api/users para crear un nuevo
+usuario con los datos proporcionados en los campos de texto mediante un JSON.
+○ Este JSON debe contener la clave “first_name” y la clave “last_name”.
+○ Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo su código de respuesta y los datos
+del nuevo usuario (los mismos que se mostraban en la tabla del ejercicio previo) si se reciben. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p>FirstName:</p>
+        <input type="text" name="" id="firstname">
+    </div>
+   <div>
+       <p>LastName:</p>
+       <input type="text" name="" id="lastname">
+   </div>
+   <button id="btn">Añadir usuario</button>
+   <div id="containerTabla"></div>
+    <script>
+
+document.getElementById('btn').addEventListener('click',function () {
+    creoJson();
+});
+
+function creoJson(){
+    let nombre = document.getElementById('firstname').value;
+    let apellido = document.getElementById('lastname').value;
+    //Paso el json a cadena para mandarlo en la petición
+    let json = JSON.stringify({
+     'first_name': nombre,
+     'last_name': apellido,
+    });
+    anyadirUsuario(json);
+}
+
+
+
+function anyadirUsuario(json) {
+  
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 201){
+           //Convierto en json la request
+            let jsonRequest = JSON.parse(this.responseText);
+            console.log(jsonRequest);
+                crearTabla(jsonRequest);
+                           
+            }  
+        }
+        xhr.open("POST","https://reqres.in/api/users",true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(json);
+    }
+
+    function crearTabla(jsonRequest){
+        
+
+        let tabla = document.createElement("table");  //Creo la tabla
+        tabla.setAttribute("border","2");
+         const thead = document.createElement("tr");   //Creo la el tr del thead
+         const thid = document.createElement("th"); //Creo el th del thead
+         thid.textContent = "Id";              //Inserto el string al th
+         const thnombre = document.createElement("th");
+         thnombre.textContent = "Nombre";
+         const thapellido = document.createElement("th");
+         thapellido.textContent = "Apellido";
+
+         thead.appendChild(thid);                    //Añado los th dentro del tr
+         thead.appendChild(thnombre);
+         thead.appendChild(thapellido);
+         tabla.appendChild(thead);                         //Añado los tr a la tabla
+         
+         const arrayDatosjson =[jsonRequest];
+         console.log(typeof arrayDatosjson)
+        for (const data of arrayDatosjson) {
+            const trbody = document.createElement("tr");//trbody
+            const tdid = document.createElement("td"); //td
+            tdid.textContent = data.id;
+            const tdnombre = document.createElement("td"); //td
+            tdnombre.textContent = data.first_name;
+            const tdapellido = document.createElement("td"); //td
+            tdapellido.textContent = data.last_name;
+         
+            trbody.appendChild(tdid);
+            trbody.appendChild(tdnombre);
+            trbody.appendChild(tdapellido);
+            tabla.appendChild(trbody);
+        }
+        document.getElementById('containerTabla').appendChild(tabla);
+        }
+    </script>
+</body>
+</html>

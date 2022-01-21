@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej7B02</title>
+</head>
+<body>
+    <h3>Crear una aplicación que en un div tenga un h1 y    
+        un botón. Al pulsar dicho botón, debe cambiar el contenido del div por el texto de un archivo de texto que se encuentra en el servidor</h3>
+    <div id="container-div">
+        <h1>Bienvenidos!!</h1>
+        <button id="btn">Cambiar contenido</button>
+    </div>
+    <script>
+        document.getElementById('btn').addEventListener('click',cambiarContenido);
+
+        function cambiarContenido(){
+            fetch('holamundo.txt')          //Realizo la petición 
+            .then((resolve)=>{
+                if (resolve.ok){            //Compruebo si la petición es correcta
+                   return resolve.text() //En caso de que la promesa sea resuelta la convierto a texto
+                }else {
+                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                }  
+              })  
+            .then((data)=>document.getElementById('container-div').innerHTML = data) //En data esta la respuesta en formato texto
+            .catch((error)=>document.getElementById('container-div').innerHTML = error.message);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej7B03</title>
+</head>
+
+<body>
+    <h4>Realizar el ejercicio del vídeo, es decir, mostrar la info de un JSON al pulsar el botón
+        Mostrar, pero en lugar de crear el JSON a partir de un fichero PHP, cargarlo directamente
+        desde un archivo datos.json que se encuentre en el mismo directorio.</h4>
+    <div>
+        <button id="btn">Mostrar datos</button>
+    </div>
+    <div id="div"></div>
+    <script>
+        document.getElementById('btn').addEventListener('click',peticion);
+        let contenedor = document.getElementById('div');
+        function peticion(){
+            fetch('datos.json')
+            .then((resolve) => {
+                if (resolve.ok) {
+                    return resolve.json() //Si la respuesta se resuelve bien retorno la promesa (response en json)
+                } else {
+                    console.log("Error en la respuesta del servidor");
+                }
+            })
+            
+            .then((data) => mostrar(data))
+            .catch((error) => document.getElementById('div').innerHTML = error.message);
+        }
+    
+
+        function mostrar(data){
+           let parrafo = document.createElement('p');
+            parrafo.textContent = `Nombre: ${data.nombre} Nacimiento: ${data.nacimiento} País: ${data.pais}`;
+            contenedor.appendChild(parrafo);
+        }
+    </script>
+</body>
+
+</html>
