@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ7C</title>
+</head>
+<body>
+    <h4>Actividad 7C01 - Temporizador hecho con async/await
+        Realiza la actividad 7B01, pero en esta ocasión usa la sintaxis async/await en lugar de métodos then/catch
+        ○ Crear una función que reciba un número de milisegundos y genere un temporizador que escriba el texto
+        “Tiempo concluido” cuando pasen dichos milisegundos
+        ○ Realmente la función no escribe, sino que genera (y devuelve) una promesa cuyo resultado (parámetro)
+        es dicho texto. Quien “escribe” serán los métodos then y catch.
+        ○ En el caso de que no se cumpla la promesa, el resultado del texto será “El tiempo no va bien”
+        ○ Se decidirá que la promesa no se ha cumplido cuando pase el doble de tiempo que el indicado en
+        milisegundos</h4>
+        <p id="salida"></p>
+        <script>
+           async function temporizador(ms){
+                try {
+                    let respuesta = await  new Promise(function (resolve, reject){  //Creo la promesa y el await espera el resultado Preguntar si el reject hay que ponerlo
+                        setTimeout(()=>{
+                             resolve("Tiempo concluido");                //Si es cierta 
+                        },ms);
+                    });
+                    document.getElementById('salida').innerHTML = respuesta;
+                } catch (error) {                                   //**Preguntar si el reject ya no hace falta ponerlo
+                        setTimeout(()=>{
+                            reject("El tiempo no va bien")              //Si no es cierta
+                        },ms*2);
+                }
+            }
+            
+         
+            temporizador(2500)
+            /* .then((resolve)=> document.getElementById('salida').innerHTML = resolve)
+            .catch((reject)=>document.getElementById('salida').innerHTML = reject); */
+        </script>
+</body>
+</html>

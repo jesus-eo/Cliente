@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7C02</title>
+</head>
+<body>
+    <h4>Actividad 7C02
+        ○ Realiza la actividad 7B02, pero en este caso usando sintaxis async/await
+        ■ Crear una aplicación que en un div tenga un h1 y un botón. Al pulsar dicho botón, debe
+        cambiar el contenido del div por el texto de un archivo de texto que se encuentra en el
+        servidor.</h4>
+        <div id="container-div">
+            <h1>Bienvenidos!!</h1>
+            <button id="btn">Cambiar contenido</button>
+        </div>
+        <script>
+             document.getElementById('btn').addEventListener('click',cambiarContenido);
+
+            async function cambiarContenido(){
+                try {
+                    let response = await fetch("holamundo.txt"); //Hago la petición y espero la respuesta con el await 
+                    let respuestaTexto = await response.text(); //Trato la respuesta
+                    document.getElementById('container-div').innerHTML = respuestaTexto;
+                    /* console.log(promesa); */
+                } catch (error) {
+                    document.getElementById('container-div').innerHTML = error;
+                }
+               
+             }
+        </script>
+</body>
+</html>

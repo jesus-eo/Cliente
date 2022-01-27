@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let productos = [
+            {
+                nombre: "Ordenador",
+                marca: "Asus",
+                precio: 1200
+            },
+            {
+                nombre: "Tablet",
+                marca: "Samsung",
+                precio: 300
+            }
+        ];
+        //Creo la promesa, con esta fución me devuelve la promesa
+        function verProductos() {
+            return new Promise((resolve, reject)=>{
+                console.log("Cargando Productos...");
+                setTimeout(()=>resolve(productos),3000);
+            });
+        }
+        //Aqui recojo la promesa en vez de utilizar el then se usa el await para recoger los datos tiene que estar dentro de un a función con async el await espera a que le llegue la promesa
+        async function getProductos() {
+            try{
+            let misproductos = await verProductos();
+            console.log(misproductos);
+            } catch(err){
+                console.log(err.message)
+            }
+        }
+        getProductos();
+    </script>
+</body>
+</html>
