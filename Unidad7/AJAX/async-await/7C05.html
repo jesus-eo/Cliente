@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 7C05</title>
+</head>
+
+<body>
+    <h4> Realiza la actividad 7B05, pero en este caso usando sintaxis async/await:
+        <br> ○ Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.
+        <br> ○ Al pulsar el botón, se debe realizar una llamada asíncrona a https://reqres.in/api/users para crear un
+        nuevo usuario con los datos proporcionados en los campos de texto mediante un JSON.
+        <br> ○ Este JSON debe contener la clave “first_name” y la clave “last_name”.
+        <br> ○ Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo su código de respuesta y los
+        datos del nuevo usuario (los mismos que se mostraban en la tabla del ejercicio previo) si se rec
+    </h4>
+
+    <div>
+        <p>FirstName:</p>
+        <input type="text" name="" id="firstname">
+    </div>
+    <div>
+        <p>LastName:</p>
+        <input type="text" name="" id="lastname">
+    </div>
+    <button id="btn">Añadir usuario</button>
+    <div id="salida"></div>
+    <script>
+        const firstName = document.querySelector('#firstname');
+        const lastname = document.querySelector('#lastname');
+        document.getElementById('btn').addEventListener('click', realizarPeticion);
+
+
+
+        async function realizarPeticion() {
+            try {
+                const json = {
+                    "firstname": firstName.value,
+                    "lastname": lastname.value
+                };
+                $response = await fetch('https://reqres.in/api/users', {
+                    method: 'POST',
+                    //Se manda la petición en forma de cadena tenemos que utilizar ese content-type del headers
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(json),
+                })
+                mostrarResponse(await $response.json())
+            } catch (error) {
+                console.log(error.message);
+            }
+
+        }
+
+        function mostrarResponse(data) {
+            console.log(data);
+            document.getElementById('salida').innerHTML = `Nombre: ${data.firstname} Apellido: ${data.lastname}  id: ${data.id} createAt: ${data.createdAt}`;
+
+        }
+    </script>
+</body>
+
+</html>
