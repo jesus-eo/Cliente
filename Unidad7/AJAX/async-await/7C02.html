@@ -21,14 +21,15 @@
 
             async function cambiarContenido(){
                 try {
-                    let response = await fetch("holamundo.txt"); //Hago la petición y espero la respuesta con el await 
+                    let response = await fetch("holamundo.txt"); //Hago la petición y espero la respuesta con el await
+                    /* console.log(response); */
                     let respuestaTexto = await response.text(); //Trato la respuesta
                     document.getElementById('container-div').innerHTML = respuestaTexto;
                     /* console.log(promesa); */
                 } catch (error) {
                     document.getElementById('container-div').innerHTML = error;
                 }
-               
+
              }
         </script>
 </body>
