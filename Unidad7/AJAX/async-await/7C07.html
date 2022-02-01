@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7C06</title>
+    <title>7C07</title>
 </head>
 
 <body>
-    <h4>Realiza la actividad 7B06, pero en este caso usando, además de async/await, el formato
-        tradicional de formulario:
-        <br> ○ Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.
-        <br> ○ Al pulsar el botón, se debe realizar una llamada asíncrona a https://reqres.in/api/users para crear un
-        nuevo usuario con los datos proporcionados en los campos de texto mediante un MIME de formulario
-        tradicional.
-        <br> ○ Este MIME debe contener la clave “first_name” y la clave “last_name”.
-        <br> ○ Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo su código de respuesta y los
-        datos del nuevo usuario (los mismos que se mostraban en la tabla del ejercicio previo) si se reciben.
+    <h4>
+        vidad 7C07 - Petición POST sobre https://reqres.in/ con objeto FormData
+<br> ● Realiza la actividad 7C06, pero en este caso usando, además async/await, el objeto FormData:
+<br> ○ Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.
+<br> ○ Al pulsar el botón, se debe realizar una llamada asíncrona a https://reqres.in/api/users para crear un
+nuevo usuario con los datos proporcionados en los campos de texto mediante un objeto FormData.
+<br> ○ Este FormData debe contener la clave “first_name” y la clave “last_name”.
+<br> ○ Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo su código de respuesta y los
+datos del nuevo usuario (los mismos que se mostraban en la tabla del ejercicio previo) si se reciben.
+<br> ○ Ojo la API de este ejercicio solo devuelve, de forma correcta, el id en la respuesta
     </h4>
     <div>
         <p>FirstName:</p>
@@ -36,14 +37,17 @@
         document.getElementById('btn').addEventListener('click', realizarPeticion);
 
         async function realizarPeticion() {
+            const objFormData = new FormData();
+            objFormData.append("firstname", firstName.value);
+            objFormData.append("lastname", lastname.value);
             try {
                 const response = await fetch('https://reqres.in/api/users', {
                     method: 'POST',
-                    //Utilizamos este content-type para enviar los datos de esa forma en el body como url
+                    //Utilizamos este content-type para enviar los datos de esa forma en el body como objeto formdata
                     headers: {
-                        'Content-type': 'application/x-www-form-urlencoded'
+                        'Content-type': "multipart/form-data"
                     },
-                    body: `firstname=${firstName.value}&lastname=${lastname.value}`
+                    body: objFormData
                 })
                 mostrarResponse(await response.json());
             } catch (error) {

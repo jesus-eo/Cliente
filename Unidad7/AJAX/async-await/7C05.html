@@ -41,7 +41,7 @@
                     "firstname": firstName.value,
                     "lastname": lastname.value
                 };
-                $response = await fetch('https://reqres.in/api/users', {
+                const response = await fetch('https://reqres.in/api/users', {
                     method: 'POST',
                     //Se manda la petición en forma de cadena tenemos que utilizar ese content-type del headers
                     headers: {
@@ -49,7 +49,7 @@
                     },
                     body: JSON.stringify(json),
                 })
-                mostrarResponse(await $response.json())
+                mostrarResponse(await response.json())
             } catch (error) {
                 console.log(error.message);
             }
