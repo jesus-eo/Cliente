@@ -49,16 +49,21 @@
                     },
                     body: JSON.stringify(json),
                 })
+                //Utilizamos el siguiente if para comprobar si la respuesta es ok, porque puede que la respuesta este bien pero devuelva un código de fallo
+                if(response.ok){
                 mostrarResponse(await response.json())
+                }else{
+                    alert("Error en la respuesta")
+                }
             } catch (error) {
-                console.log(error.message);
+                alert(error.message);
             }
 
         }
 
         function mostrarResponse(data) {
             console.log(data);
-            document.getElementById('salida').innerHTML = `Nombre: ${data.firstname} Apellido: ${data.lastname}  id: ${data.id} createAt: ${data.createdAt}`;
+            document.getElementById('salida').innerHTML = `Nombre: ${data.firstname} <br> Apellido: ${data.lastname} <br>  id: ${data.id} <br> createAt: ${data.createdAt}`;
 
         }
     </script>

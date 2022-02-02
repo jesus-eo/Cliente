@@ -20,18 +20,22 @@
         document.getElementById('btn').addEventListener('click', peticion);
         let contenedor = document.getElementById('div');
 
-        async function peticion() { //Preguntar si se hace asi con el try catch o hay que utilizar el throw como viene en los apuntes
+        async function peticion() {
             try {
                 const respuesta = await fetch('datos.json');
-                mostrar(await respuesta.json())
+                if (respuesta.ok) {
+                    mostrar(await respuesta.json())
+                } else {
+                    alert("Error en la respuesta")
+                }
             } catch (error) {
-                console.log("Error en la respuesta del servidor");
+                alert("Error en la respuesta del servidor");
             }
         };
 
         function mostrar(data) {
             let parrafo = document.createElement('p');
-            parrafo.textContent = `Nombre: ${data.nombre} Nacimiento: ${data.nacimiento} País: ${data.pais}`;
+            parrafo.textContent = `Nombre: ${data.nombre} <br> Nacimiento: ${data.nacimiento}  <br>País: ${data.pais}`;
             contenedor.appendChild(parrafo);
         }
     </script>

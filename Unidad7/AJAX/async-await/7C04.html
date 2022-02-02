@@ -20,15 +20,17 @@
     <script>
         document.getElementById('btn').addEventListener('click', solicitarUsuario);
         async function solicitarUsuario() {
-            const response = await fetch('https://reqres.in/api/users')
-
-            if (!response.ok) {
-                throw new Error("Warn", "Error en la respuesta del servidor"); //Si hay un fallo en la respuesta
+            try {
+                const response = await fetch('https://reqres.in/api/users')
+                if (!response.ok) {
+                    throw new Error("Warn", "Error en la respuesta del servidor"); //Si hay un fallo en la respuesta
+                }
+                    const jsonResponse = await response.json();
+                    crearTabla(jsonResponse);
+                    muestraPagina(jsonResponse);
+            } catch (error) {
+                alert(error.message);
             }
-            const jsonResponse = await response.json();
-            crearTabla(jsonResponse);
-            muestraPagina(jsonResponse);
-
         }
 
         function muestraPagina(jsonResponse) {
@@ -56,7 +58,7 @@
             thead.appendChild(themail);
             tabla.appendChild(thead);                         //Añado los tr a la tabla
 
-            const arrayDatosjson = jsonResponse.data;  //Accedo a la propiedad data 
+            const arrayDatosjson = jsonResponse.data;  //Accedo a la propiedad data
             for (const data of arrayDatosjson) {
                 const trbody = document.createElement("tr");//trbody
                 const tdid = document.createElement("td"); //td
