@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="./jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <h1>jQuery</h1>
+    <p>Mi Párrafo</p>
+    <p>Mi Párrafo</p>
+    <p>Mi Párrafo</p>
+    <p>Mi Párrafo</p>
+    <p>Mi Párrafo</p>
+    <button>Pulsar</button>
+    <button>Pulsar</button>
+    <script>
+        /*  $(document).ready(function () { Cuando carga la página realiza esta función
+             alert('hola a todos');
+         }); */
+
+        /*  $(document).ready(inicio);
+         function inicio() {
+             alert('hola a todos');
+         }; */
+
+        /*  $(document).ready(function () { cuado pulse un elemento button desaparecen los párrafos
+             $("button").click(function () {
+                 $("p").hide();
+             });
+         });
+     */
+        $(document).ready(inicio);
+        function inicio() {
+            $("button").click(function () {
+                $("p").toggle();
+            });
+        };
+    </script>
+</body>
+
+</html>
