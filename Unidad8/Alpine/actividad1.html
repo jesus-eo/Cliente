@@ -5,24 +5,127 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js">
-    </script> -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js">
+    </script>
     <!-- Para importar el modulo de alpine antes hay que tener instalado el npm y hacer npm install alpinejs -->
-    <script type="module">//import Alpine from 'alpinejs' //Si tienes bundler (webpack..)
+    <!--   <script type="module">//import Alpine from 'alpinejs' //Si tienes bundler (webpack..)
         import Alpine from './node_modules/alpinejs/dist/module.esm.js'//Directo importa Alpine de ese fichero
         window.Alpine = Alpine //Opcional, pero permite trabajar con devTools, es una propiedad que le agregamos a windows y lo podemos utilizar en el f12 en una herramienta
         Alpine.start() //Arrancamos el alpine que importamos
-    </script>
+    </script> -->
     <title>Alpine</title>
 </head>
 
 <body>
     <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
     <!-- hace el textcontent muestra el valor de message -->
+    Contador
     <div x-data="{ count: 0 }">
         <button x-on:click="count++">Increment</button>
+        <!-- También se puede poder <button @click="count++"></button> -->
+        <button x-on:click="count--">Decrement</button>
         <span x-text="count"></span>
     </div>
+
+    <br>
+    Menu desplegable
+    <div x-data="{ open: false }">
+        <button @click="open = ! open">Toggle</button> <!-- El ! le cambia el valor al open -->
+        <div x-show="open" @click.outside="open = false">Contents...</div>
+        <!-- show es el display none si open es falso el div no se ve y el outside es un modificador que cuando pulsas fuera cambia el open a false, si el elemento no es visible no interactua -->
+    </div>
+    <br>
+    Busqueda
+    <!-- Se puedeponer busqueda() en el shearch y accede a la función busqueda -->
+    <div x-data="{search: '', 
+                items: ['foo', 'bar', 'baz'],
+                get filteredItems() {return this.items.filter(i => i.startsWith(this.search))}}">
+        <input x-model="search" placeholder="Search...">
+        <!-- Con el x-model="search" el valor que introdzcamos en el input se lo asignara al search -->
+        <ul>
+            <template x-for="item in filteredItems">
+                <!-- template es una etiqueta que no se renderiza hasta que no se llama con js se pone esta etiqueta para el for, necesita una plantilla para hacer un for, en ese for recorre cada elemento que tienes en el array que nos devuelve el filteredItems que en primer lugar te devuelve todos porque el search es '' al principio -->
+                <li x-text="item"></li>
+            </template>
+        </ul>
+    </div>
+    <br>
+    <hr><br>
+    Datos reutilizables
+    <div x-data="dropdown">
+        <button @click="toggle">Expand</button>
+        <span x-show="open">Content...</span>
+    </div>
+
+    <br>
+    <hr><br>
+
+    Globales con Alpine.store
+    <div x-data>
+        <template x-for="tab in $store.tabs.items">
+            <!-- Accedemos al objeto de Alpine.store -->
+            <li x-text="tab"> </li>
+        </template>
+    </div>
+    <div x-data>
+        <button @click=" $store.tabs.current='first'">First Tab</button>
+        <!-- Esta modificando las propiedades current de Alpine.store $store hace referencia a todos los alpine.store y después accede al objeto tabs, si se cambia una propiedad cambia en los demás objetos es decir en los de,ás sitios qeu usemos el store cfon el data cada vez que lo utilicemos es un objeto distinto -->
+        <button @click=" $store.tabs.current='second'">Second Tab</button>
+        <button @click=" $store.tabs.current='third'">Third Tab</button>
+        <span x-text=" $store.tabs.current"></span>
+    </div>
+
+
+    <br>
+    <hr><br>
+    IF
+
+    <div x-data="{ open: false }">
+        <button @click="open = ! open">Expand</button>
+        <template x-if="open">
+            <!-- Con el if si open es tru crea el div(appendChild) si es false lo borra(remove) -->
+            <div>
+                Content...
+            </div>
+        </template>
+    </div>
+    <br>
+    <hr><br>
+    TRANSICIONES
+
+    <div x-data="{ open: false }">
+        <button @click="open = ! open">Expands</button>
+        <div x-show="open" x-transition> <!-- Cuando open es true el show(Display) hace que aparezca y trae una transición por defecto -->
+            Content...
+        </div>
+    </div>
+
+    <br><hr><br>
+    <script>
+        /* Cuando alpine se inicia, con el evento alpine:init  se llama a alpine.data , y se carga el código alpine porque vas a necesitarlo cuando se carge el dom, porque se carga el dom antes que alpine */
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('dropdown', () => ({
+                open: false,
+                toggle() {
+                    this.open = !this.open
+                }
+            }))
+            /* Al objeto tabs se accede con el . como los objetos */
+            Alpine.store('tabs', {
+                current: 'first',
+                items: ['first', 'second', 'third'],
+            })
+        })
+        function busqueda() {
+            return {
+                search: '',
+                items: ['foo', 'bar', 'baz'],
+                get filteredItems() { return this.items.filter(i => i.startsWith(this.search)) }
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>
