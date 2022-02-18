@@ -26,9 +26,11 @@
     Alpine.data(Método global)-- se puede reutilizar, crea una objeto que podemos reuilizar, solo se puede acceder si accedes a ese objeto en cuestion, cada objeto que devuelve es nuevo.
     x-if--Este no permite transiciones, necesita template, el if hace appendchild o remove.
     x-transition-- se puede usar con  x-show.transition... para cuando aparezca o desaparezca haga esa transición.
+    x-init -- Se ejecuta cuando carga la página.
     x-bind-- Es para cambiar atributos de html. el shortand para este es :class para cambiar el atributo de la clase
     Alpine.store--
     $store--Propiedad mágica para acceder a objetos stores creado con Alpine.store
+    
      -->
     <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
     <!-- hace el textcontent muestra el valor de message -->
@@ -114,27 +116,27 @@
         </div>
     </div>
 
-    <br><hr><br>
+    <br>
+    <hr><br>
     Agregar atributos
     <!-- Cambia la clase del botón al pulsarlo si red es true la clase es bg-red si es false la class "", dentro del x-bind sera un objeto con todas las clases y cada una tiene true o false y se ira activando o desactivando la que quieras -->
-    <button x-data="{ red: false }" x-bind:class="red ? 'bg-red' : ''" 
-    @click="red = ! red">
+    <button x-data="{ red: false }" x-bind:class="red ? 'bg-red' : ''" @click="red = ! red">
         Toggle Red
     </button>
-  <!-- Cambio párrafo de color -->
+    <!-- Cambio párrafo de color -->
     <div x-data="{ red: false }">
-        <p x-bind:class="red ? 'bg-red-400' : ''" >Prueba</p>
-        <button  
-        @click="red = ! red">
+        <p x-bind:class="red ? 'bg-red-400' : ''">Prueba</p>
+        <button @click="red = ! red">
             Toggle Red
         </button>
     </div>
-<!-- Cambia la classe hidden a true o false, los :class es como hacer x-bind:class -->
+    <!-- Cambia la classe hidden a true o false, los :class es como hacer x-bind:class -->
     <div x-data="{ open: true }">
         <span :class="{ 'hidden': ! open }">...</span>
-        </div>
+    </div>
 
-    <br><hr><br>
+    <br>
+    <hr><br>
 
     EVENTO
     <!-- Prevent default -->
@@ -142,7 +144,14 @@
     <!-- $event propiedad magica igual que javascript hace el efecto sobre el que llama  -->
     <button x-data @click="$event.target.remove()">Remove Me</button>
 
-
+    <br>
+    <hr><br>
+    <div x-data="{ foo: { bar: 'baz' }}" x-init="$watch('foo.bar', => console.log(value))">
+        <button @click="foo.bar = 'bob'">Toggle Open</button>
+    </div>
+<!-- 
+   x-effect Se ejecuta cuando cambie open ejecuta ese código js -->
+    <div x-data="{ open: false }" x-effect="console.log(open)"></div>
     <script>
         /* Cuando alpine se inicia, con el evento alpine:init  se llama a alpine.data , y se carga el código alpine porque vas a necesitarlo cuando se carge el dom, porque se carga el dom antes que alpine */
         document.addEventListener('alpine:init', () => {
