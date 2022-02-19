@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,28 +13,35 @@
 </head>
 
 <body>
-    <!-- Memory Game -->
-    <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen">
-      <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl">
-        <span></span>
-        <span class="text-xs">pts</span>
-      </h1>
+  <!-- Memory Game -->
+  <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen">
+    <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl">
+      <!-- Preguntar si puntos llama a get puntos -->
+      <span x-text="puntos"></span>
+      <span class="text-xs">pts</span>
+    </h1>
 
-        <div class="flex-1 grid grid-cols-4 gap-10">
-          <template x-for="carta in cartas">
-            <div @click = "carta.girada = !carta.girada"
-                :style="`background: ${carta.girada ? carta.color : 'grey'}`" 
-                class="h-32 cursor-pointer bg-gray-300"> <!--Cuando le damos al botón cambia cartagirada a true, Los : equivale a x-bind, hay que utilizar template literal -->
-              <button>FOO</button>
-            </div>
-          </template> 
+    <div class="flex-1 grid grid-cols-4 gap-10">
+      <template x-for="carta in cartas"><!-- Este for crea los div de las cartas sera tantos div como números de cartas hallae nel array de cartas -->
+        <div>
+           <button 
+            @click = "girarCarta(carta)"
+            x-show="!carta.borrada"
+            :style="`background: ${carta.girada ? carta.color : 'grey'}`"
+            class="h-32 cursor-pointer w-full">
+            <!--Cuando le damos al botón cambia cartagirada a true, Los : equivale a x-bind, hay que utilizar template literal -->
+            FOO
+          </button>
         </div>
+      </template>
     </div>
+  </div>
 
-    <div class="fixed bottom-0 right-0 bg-green-500 text-white p-2 m-10 rounded">Mensaje Flash</div>
+  <div class="fixed bottom-0 right-0 bg-green-500 text-white p-2 m-10 rounded">Mensaje Flash</div>
 
-    <script>
-        
-    </script>
+  <script>
+
+  </script>
 </body>
+
 </html>
