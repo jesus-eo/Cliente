@@ -9,17 +9,24 @@ function juego() {
       { color: 'green', girada: false, borrada: false },
       { color: 'yellow', girada: false, borrada: false }
     ],
-    get cartasGiradas() {
+    //Devuelve un array de las cartas que girada sea true
+   get cartasGiradas() {
       return this.cartas.filter(carta => carta.girada)
    },
+   //Devuelve un array de las cartas que borrada sea true
    get cartasBorradas() {
       return this.cartas.filter(carta => carta.borrada)
    },
-
+   //Devuelve el número de cartas que borrada sea true
    get puntos() {
       return this.cartasBorradas.length
    },
-
+   /**
+    * 
+    * @param {"objeto"} carta 
+    * @returns 
+    * @description cambia carta.girada a true o false, comprueba si los colores de las cartas giradas son iguales,lanza el evento y cambia el estado de borrada de las cartas a true para que desaparezca con el x-show y vuelve a poner las cartas giradas a false
+    */
    girarCarta(carta) {
      //El return te saca de la función
      if (this.cartasGiradas.length == 2) {
