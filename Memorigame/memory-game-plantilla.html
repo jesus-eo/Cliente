@@ -6,53 +6,62 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memory Game</title>
-  <!-- <script src="//unpkg.com/alpinejs" defer></script>  --><!-- Descaraga ultima versión de alpine -->
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <script src="//unpkg.com/alpinejs" defer></script> <!-- Descaraga ultima versión de alpine -->
+  <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> -->
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <script src="./main.js"></script>
 </head>
 
 <body>
   <!-- Memory Game -->
-  <!-- Se pone parentesis en el x-data = "juego()" porque en el script utilizamos funciones -->
-  <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen">
-    <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl">
-      <!-- Llama a get puntos cuando es get no se pone los ()-->
-      <span x-text="puntos"></span>
-      <span class="text-xs">pts</span>
-    </h1>
+  <button x-data x-show="$store.containerBody.btnVisible"
+    @click="$store.containerBody.bodyVisible = true, $store.containerBody.btnVisible = false "
+    class="h-32 cursor-pointer w-full">
+    FOO
+  </button>
+  <div x-data x-show="$store.containerBody.bodyVisible">
+    <!-- Se pone parentesis en el x-data = "juego()" porque en el script utilizamos funciones -->
+    <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen">
+      <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl">
+        <!-- Llama a get puntos cuando es get no se pone los ()-->
+        <span x-text="puntosTotales"></span>
+        <span class="text-xs">pts</span>
+      </h1>
 
-    <div class="flex-1 grid grid-cols-4 gap-10">
-      <template x-for="carta in cartas"><!-- Este for crea los div de las cartas sera tantos div como números de cartas hallae nel array de cartas -->
-       
-        <div>
-           <button 
-            @click = "girarCarta(carta)"
-            x-show="!carta.borrada"
-            :style="`background: ${carta.girada ? carta.color : 'grey'}`"
-            class="h-32 cursor-pointer w-full">
-            <!--Cuando le damos al botón cambia cartagirada a true, Los : equivale a x-bind (modifica atributos), hay que utilizar template literal -->
-            FOO
-          </button>
-        </div>
-      </template>
+      <div class="flex-1 grid grid-cols-4 gap-10">
+        <template x-for="carta in cartas">
+          <!-- Este for crea los div de las cartas sera tantos div como números de cartas hallae nel array de cartas -->
+          <div>
+            <button @click="girarCarta(carta)" x-show="!carta.borrada"
+              :style="`background: ${carta.girada ? carta.color : 'grey'}`" class="h-32 cursor-pointer w-full">
+              <!--Cuando le damos al botón cambia cartagirada a true, Los : equivale a x-bind (modifica atributos), hay que utilizar template literal -->
+              FOO
+            </button>
+          </div>
+        </template>
+      </div>
     </div>
-  </div>
-<!-- @parejaencontrada creo ese evento  con el .windows cuando en el js llama a la funcion lanzapareja encontrada crea el evento con nombre parejaencontrada que lo asocia con @parejaencontrada y realiza lo que esta dentro de ese evento @parejaencontrada.window-->
-<!-- Con $event.detail.mensaje recogemos el mensaje del evento -->
-<!-- Podemos usar el x-transition también para dar transiciones -->
-  <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}"
-      x-text="mensaje"
-      x-show.transition.duration.1000="mostrado"
-      @parejaencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"  
+    <!-- @parejaencontrada creo ese evento  con el .windows cuando en el js llama a la funcion lanzapareja encontrada crea el evento con nombre parejaencontrada que lo asocia con @parejaencontrada y realiza lo que esta dentro de ese evento @parejaencontrada.window-->
+    <!-- Con $event.detail.mensaje recogemos el mensaje del evento -->
+    <!-- Podemos usar el x-transition también para dar transiciones -->
+    <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}" x-show.transition.duration.1000="mostrado"
+      @parejaencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"
       class="fixed bottom-0 right-0 bg-green-500 text-white p-2 m-10 rounded">
       <span x-text="mensaje"></span>
-      <!-- <button @click="mostrado=false">&times</button>  -->
-  </div>
- 
-  <script>
+    </div>
 
-  </script>
+    <!-- Botón pareja no encontrada -->
+    <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}" x-show.transition.duration.1000="mostrado"
+      @parejanoencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"
+      class="fixed bottom-0 left-0 bg-red-500 text-white p-2 m-10 rounded">
+      <span x-text="mensaje"></span>
+    </div>
+
+    <div x-data
+      class="fixed bottom-0  bg-green-500 text-white p-2 m-10 rounded">
+      <span>Reiniciar partida</span>
+    </div>
+  </div>
 </body>
 
 </html>
