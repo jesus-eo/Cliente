@@ -44,7 +44,8 @@ function juego() {
                   //Si las cartas son iguales sumo puntos
                   this.SumarPuntos;
                   if (this.puntos == this.cartas.length) {
-                     setTimeout(()=> alert('Enhorabuena, has ganado'), 250);          
+                     setTimeout(()=> alert('Enhorabuena, has ganado'), 250); 
+                     this.reiniciar;
                   }
                }else {
                   /* Llama a la función que lanza el evento y si las cartas son distintas resto puntos*/
@@ -55,6 +56,16 @@ function juego() {
             this.cartasGiradas.forEach(carta => carta.girada = false);
             }, 750);
          }
+      },
+//Recorro las cartas yle cambio las propiedades a las iniciales
+      get reiniciar(){
+         this.cartas.forEach(carta => {
+            carta.girada = false,
+            carta.borrada = false
+         });
+         this.puntosTotales = 0;
+         Alpine.store('containerBody').btnVisible = true;
+         Alpine.store('containerBody').bodyVisible = false
       }
    }
 }

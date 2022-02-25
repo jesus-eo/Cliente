@@ -17,9 +17,10 @@
   <button x-data x-show="$store.containerBody.btnVisible"
     @click="$store.containerBody.bodyVisible = true, $store.containerBody.btnVisible = false "
     class="h-32 cursor-pointer w-full">
-    FOO
+    Iniciar partida
   </button>
   <div x-data x-show="$store.containerBody.bodyVisible">
+
     <!-- Se pone parentesis en el x-data = "juego()" porque en el script utilizamos funciones -->
     <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen">
       <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl">
@@ -40,26 +41,28 @@
           </div>
         </template>
       </div>
-    </div>
-    <!-- @parejaencontrada creo ese evento  con el .windows cuando en el js llama a la funcion lanzapareja encontrada crea el evento con nombre parejaencontrada que lo asocia con @parejaencontrada y realiza lo que esta dentro de ese evento @parejaencontrada.window-->
-    <!-- Con $event.detail.mensaje recogemos el mensaje del evento -->
-    <!-- Podemos usar el x-transition también para dar transiciones -->
-    <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}" x-show.transition.duration.1000="mostrado"
-      @parejaencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"
-      class="fixed bottom-0 right-0 bg-green-500 text-white p-2 m-10 rounded">
-      <span x-text="mensaje"></span>
-    </div>
 
-    <!-- Botón pareja no encontrada -->
-    <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}" x-show.transition.duration.1000="mostrado"
-      @parejanoencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"
-      class="fixed bottom-0 left-0 bg-red-500 text-white p-2 m-10 rounded">
-      <span x-text="mensaje"></span>
-    </div>
+      <!-- @parejaencontrada creo ese evento  con el .windows cuando en el js llama a la funcion lanzapareja encontrada crea el evento con nombre parejaencontrada que lo asocia con @parejaencontrada y realiza lo que esta dentro de ese evento @parejaencontrada.window-->
+      <!-- Con $event.detail.mensaje recogemos el mensaje del evento -->
+      <!-- Podemos usar el x-transition también para dar transiciones -->
+      <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}" x-show.transition.duration.1000="mostrado"
+        @parejaencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"
+        class="fixed bottom-0 right-0 bg-green-500 text-white p-2 m-10 rounded">
+        <span x-text="mensaje"></span>
+      </div>
 
-    <div x-data
-      class="fixed bottom-0  bg-green-500 text-white p-2 m-10 rounded">
-      <span>Reiniciar partida</span>
+      <!-- Botón pareja no encontrada -->
+      <div x-data="{mostrado: false, mensaje: 'Mensaje por defecto'}" x-show.transition.duration.1000="mostrado"
+        @parejanoencontrada.window="mensaje=$event.detail.mensaje; mostrado=true;  setTimeout(()=> mostrado=false, 1000)"
+        class="fixed bottom-0 left-0 bg-red-500 text-white p-2 m-10 rounded">
+        <span x-text="mensaje"></span>
+      </div>
+
+      <div x-data @click="reiniciar "
+        class="fixed bottom-0 right-14 bg-blue-500 text-white p-2 m-10 cursor-pointer rounded">
+        <span>Reiniciar partida</span>
+      </div>
+
     </div>
   </div>
 </body>
