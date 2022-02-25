@@ -46,6 +46,11 @@ function juego() {
                   if (this.puntos == this.cartas.length) {
                      setTimeout(()=> alert('Enhorabuena, has ganado'), 250); 
                      this.reiniciar;
+                   /*   setTimeout(vuelvePagInicio, 250);
+                     function vuelvePagInicio(){
+                       alert('Enhorabuena, has ganado');
+                        this.reiniciar;                       
+                     } */
                   }
                }else {
                   /* Llama a la función que lanza el evento y si las cartas son distintas resto puntos*/
@@ -66,8 +71,17 @@ function juego() {
          this.puntosTotales = 0;
          Alpine.store('containerBody').btnVisible = true;
          Alpine.store('containerBody').bodyVisible = false
+      },
+
+      get mostrarCartasInicio() {
+         this.cartas.forEach(carta => {
+            carta.girada = true;
+         });
+         setTimeout(this.reiniciar, 250);
       }
    }
+
+
 }
 /* Asocia el evento al con el mismo nombre qu en el alpine del html */
 function lanzaParejaEncontrada(mymensaje) {
