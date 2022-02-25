@@ -1,14 +1,41 @@
 function juego() {
    return {
       cartas: [
-         { color: 'red', girada: false, borrada: false },
-         { color: 'blue', girada: false, borrada: false },
-         { color: 'green', girada: false, borrada: false },
-         { color: 'yellow', girada: false, borrada: false },
-         { color: 'red', girada: false, borrada: false },
-         { color: 'blue', girada: false, borrada: false },
-         { color: 'green', girada: false, borrada: false },
-         { color: 'yellow', girada: false, borrada: false }
+         { color: 'red', girada: false, borrada: false ,numero: 1},
+         { color: 'blue', girada: false, borrada: false ,numero: 1},
+         { color: 'green', girada: false, borrada: false ,numero: 1},
+         { color: 'yellow', girada: false, borrada: false ,numero: 1},
+         { color: 'red', girada: false, borrada: false ,numero: 1},
+         { color: 'blue', girada: false, borrada: false ,numero: 1},
+         { color: 'green', girada: false, borrada: false ,numero: 1},
+         { color: 'yellow', girada: false, borrada: false ,numero: 1},
+
+         { color: 'red', girada: false, borrada: false ,numero: 2},
+         { color: 'blue', girada: false, borrada: false ,numero: 2},
+         { color: 'green', girada: false, borrada: false ,numero: 2},
+         { color: 'yellow', girada: false, borrada: false ,numero: 2},
+         { color: 'red', girada: false, borrada: false ,numero: 2},
+         { color: 'blue', girada: false, borrada: false ,numero: 2},
+         { color: 'green', girada: false, borrada: false ,numero: 2},
+         { color: 'yellow', girada: false, borrada: false ,numero: 2},
+
+         { color: 'red', girada: false, borrada: false ,numero: 3},
+         { color: 'blue', girada: false, borrada: false ,numero: 3},
+         { color: 'green', girada: false, borrada: false ,numero: 3},
+         { color: 'yellow', girada: false, borrada: false ,numero: 3},
+         { color: 'red', girada: false, borrada: false ,numero: 3},
+         { color: 'blue', girada: false, borrada: false ,numero: 3},
+         { color: 'green', girada: false, borrada: false ,numero: 3},
+         { color: 'yellow', girada: false, borrada: false ,numero: 3},
+
+         { color: 'red', girada: false, borrada: false ,numero: 4},
+         { color: 'blue', girada: false, borrada: false ,numero: 4},
+         { color: 'green', girada: false, borrada: false ,numero: 4},
+         { color: 'yellow', girada: false, borrada: false ,numero: 4},
+         { color: 'red', girada: false, borrada: false ,numero: 4},
+         { color: 'blue', girada: false, borrada: false ,numero: 4},
+         { color: 'green', girada: false, borrada: false ,numero: 4},
+         { color: 'yellow', girada: false, borrada: false ,numero: 4},
       ],
       puntosTotales: 0
       ,
@@ -37,20 +64,14 @@ function juego() {
 
          if (this.cartasGiradas.length == 2) {
             setTimeout(() => {
-               if (this.cartasGiradas[0].color == this.cartasGiradas[1].color) {
+               if (this.cartasGiradas[0].color == this.cartasGiradas[1].color && this.cartasGiradas[0].numero == this.cartasGiradas[1].numero) {
                   lanzaParejaEncontrada('Has encontrado una pareja'); /* En este momento cuando se lanza este evento se asocia al del html de nombre parjaencontrada y ejecuta lo que tenga en el html */
 
                   this.cartasGiradas.forEach(carta => carta.borrada = true);
                   //Si las cartas son iguales sumo puntos
                   this.SumarPuntos;
                   if (this.puntos == this.cartas.length) {
-                     setTimeout(()=> alert('Enhorabuena, has ganado'), 250); 
-                     this.reiniciar;
-                   /*   setTimeout(vuelvePagInicio, 250);
-                     function vuelvePagInicio(){
-                       alert('Enhorabuena, has ganado');
-                        this.reiniciar;                       
-                     } */
+                     setTimeout(()=> {alert('Enhorabuena, has ganado'); this.reiniciar}, 250); 
                   }
                }else {
                   /* Llama a la función que lanza el evento y si las cartas son distintas resto puntos*/
@@ -74,15 +95,30 @@ function juego() {
       },
 
       get mostrarCartasInicio() {
+         console.log("Entraaa");
+         this.barajar;
          this.cartas.forEach(carta => {
             carta.girada = true;
+            console.log("Entraaa");
+         });       
+         setTimeout(()=>{this.reiniciarCartas}, 450);
+      },
+
+      get reiniciarCartas() {
+        this.cartas.forEach(carta => {
+            carta.girada = false,
+            carta.borrada = false
          });
-         setTimeout(this.reiniciar, 250);
+      },
+      get barajar(){
+         this.cartas.sort(()=> Math.random() - 0.5);        
       }
+
    }
 
 
 }
+
 /* Asocia el evento al con el mismo nombre qu en el alpine del html */
 function lanzaParejaEncontrada(mymensaje) {
    let myEvento = new CustomEvent('parejaencontrada', { detail: { mensaje: mymensaje } });

@@ -14,29 +14,34 @@
 
 <body>
   <!-- Memory Game -->
-  <button x-data x-show="$store.containerBody.btnVisible"
-    @click="$store.containerBody.bodyVisible = true, $store.containerBody.btnVisible = false"
-    class="h-32 cursor-pointer w-full">
-    Iniciar partida
-  </button>
-  <div x-data x-show="$store.containerBody.bodyVisible">
-
     <!-- Se pone parentesis en el x-data = "juego()" porque en el script utilizamos funciones -->
-    <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen">
-      <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl">
+    <div x-data="juego()" class="px-10 flex items-center justify-center min-h-screen" > 
+
+      <button  x-show="$store.containerBody.btnVisible"
+        @click="$store.containerBody.bodyVisible = true, $store.containerBody.btnVisible = false, mostrarCartasInicio"
+        class="h-32 cursor-pointer w-full">
+        Iniciar partida
+      </button>
+
+      <h1 class="fixed top-0 right-0 m-10 font-bold text-3xl" x-show="$store.containerBody.bodyVisible">
         <!-- Llama a get puntos cuando es get no se pone los ()-->
         <span x-text="puntosTotales"></span>
         <span class="text-xs">pts</span>
       </h1>
 
-      <div class="flex-1 grid grid-cols-4 gap-10">
+      <div class="flex-1 grid grid-cols-8 gap-10" x-show="$store.containerBody.bodyVisible">
         <template x-for="carta in cartas">
           <!-- Este for crea los div de las cartas sera tantos div como números de cartas hallae nel array de cartas -->
           <div>
             <button @click="girarCarta(carta)" x-show="!carta.borrada"
-              :style="`background: ${carta.girada ? carta.color : 'grey'}`" class="h-32 cursor-pointer w-full">
-              <!--Cuando le damos al botón cambia cartagirada a true, Los : equivale a x-bind (modifica atributos), hay que utilizar template literal -->
-              FOO
+            :style="`background: ${carta.girada ? carta.color : 'grey'}`" 
+            class="h-32 cursor-pointer w-full"
+            >
+            <span 
+            x-text="carta.numero"
+            x-show="carta.girada"
+            ></span>
+              <!--Cuando le damos al botón cambia cartagirada a true, Los : equivale a x-bind (modifica atributos), hay que utilizar template literal -->             
             </button>
           </div>
         </template>
@@ -58,13 +63,14 @@
         <span x-text="mensaje"></span>
       </div>
 
-      <div x-data @click="reiniciar "
+      <div  @click="reiniciar "
+      x-show="$store.containerBody.bodyVisible"
         class="fixed bottom-0 right-14 bg-blue-500 text-white p-2 m-10 cursor-pointer rounded">
         <span>Reiniciar partida</span>
       </div>
 
     </div>
-  </div>
+  <!-- </div> -->
 </body>
 
 </html>
