@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue2</title>
+    <script src="https://unpkg.com/vue@2.x.x/dist/vue.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="main.js"></script>
+    
+</head>
+<body class="grid justify-center items-center justify-items-center">
+    <h1 class="text-2xl font-semibold"> Hola</h1>
+    <div    id="app"
+            class="grid  justify-items-center">
+          <!--   Se puede utilizar {{}}(interpolación)o v-text para mostrar lo que hay en la directiva saludo -->
+            <h2>{{saludo}}</h2>
+            <h2 v-text="saludo"></h2>
+            <!-- Se escribe en minúsculas aunque en el js este declarado como Presentacion -->
+            <!-- Mostrado es un estado del objeto app -->
+            <button @click="mostrar()">Mostrar</button>
+            <presentacion v-show="mostrado"></presentacion>
+
+    </div>
+ 
+</body>
+</html>
